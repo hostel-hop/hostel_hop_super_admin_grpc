@@ -16,6 +16,4 @@ abstract class RegisterModule {
 
     return db;
   }
-
-  
 }

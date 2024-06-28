@@ -46,7 +46,9 @@ class _LoginContentState extends State<_LoginContent> {
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
-        context.goNamed('home');
+        if (state.status == LoginStatus.success) {
+          context.goNamed('home');
+        }
       },
       child: Scaffold(
         body: Column(

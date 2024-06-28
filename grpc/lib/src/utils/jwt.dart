@@ -13,7 +13,7 @@ mixin JWTUtilis {
 
       final decoded = JWT.decode(token);
 
-      if ((decoded.payload as Map<String, dynamic>)['role'] !=
+      if ((decoded.payload as Map<String, dynamic>)['user_metadata']['role'] !=
           'hostel_hop_super_admin') {
         return false;
       }

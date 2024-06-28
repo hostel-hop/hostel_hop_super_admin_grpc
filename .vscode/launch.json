@@ -9,6 +9,7 @@
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart",
+            "cwd": "frontend",
             "args": [
                "--dart-define=SUPABASE_URL=https://nrysczdjrimxsojrxvlz.supabase.co",
                 "--dart-define=SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5yeXNjemRqcmlteHNvanJ4dmx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTcxMDQxOTksImV4cCI6MjAzMjY4MDE5OX0.9mXGvdpLS6gyRCCXdaGlRxNEgjSJ43UOCjzdEqunNhQ",
@@ -23,6 +24,7 @@
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart",
+            "cwd": "frontend",
             "flutterMode": "profile",
             "args": [
                 "--dart-define=SUPABASE_URL=https://nrysczdjrimxsojrxvlz.supabase.co",
@@ -34,6 +36,7 @@
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart",
+            "cwd": "frontend",
             "flutterMode": "release",
             "args": [
                 "--dart-define=SUPABASE_URL=https://nrysczdjrimxsojrxvlz.supabase.co",

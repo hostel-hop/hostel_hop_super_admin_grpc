@@ -31,7 +31,7 @@ class AuthenticationRepository implements IAuthenticationRepository {
         );
       }
 
-      if (user.role != 'hostel_hop_super_admin') {
+      if (user.userMetadata!['role'] != 'hostel_hop_super_admin') {
         return left(
           const AuthenticatedFailure(message: 'User is not a super admin'),
         );

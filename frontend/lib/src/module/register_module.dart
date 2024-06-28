@@ -1,5 +1,8 @@
 import 'package:google_sign_in_platform_interface/google_sign_in_platform_interface.dart';
 import 'package:grpc/grpc_or_grpcweb.dart';
+import 'package:hostel_hop_super_admin/src/generated/wallet.pbgrpc.dart';
+import 'package:hostel_hop_super_admin/src/interceptors/auth.dart';
+import 'package:hostel_hop_super_admin/src/interceptors/debug.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -31,6 +34,16 @@ abstract class RegisterModule {
       host: "localhost",
       port: 8080,
       transportSecure: false,
+    );
+  }
+
+  WalletsClient walletsClient(GrpcOrGrpcWebClientChannel channel) {
+    return WalletsClient(
+      channel,
+      interceptors: [
+        AuthMessageClientInterceptor(),
+        DebugMessageClientInterceptor()
+      ],
     );
   }
 }

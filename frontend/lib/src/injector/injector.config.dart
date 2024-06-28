@@ -16,11 +16,12 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import '../data/remote/interceptors/auth.dart' as _i8;
 import '../data/remote/interceptors/debug.dart' as _i5;
-import '../features/login/cubit/login_cubit.dart' as _i11;
+import '../features/login/cubit/login_cubit.dart' as _i12;
+import '../generated/wallet.pbgrpc.dart' as _i7;
 import '../module/register_module.dart' as _i6;
 import '../repository/authentication/authentication_repository.dart' as _i10;
 import '../repository/authentication/i_authentication_repository.dart' as _i9;
-import '../repository/wallet/wallet_repository.dart' as _i7;
+import '../repository/wallet/wallet_repository.dart' as _i11;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -44,15 +45,17 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i5.DebugMessageClientInterceptor());
     gh.lazySingleton<_i6.SupabaseAuthClient>(
         () => registerModule.supabaseClient());
-    gh.singleton<_i7.WalletRepository>(
-        () => _i7.WalletRepository(gh<_i4.GrpcOrGrpcWebClientChannel>()));
+    gh.factory<_i7.WalletsClient>(() =>
+        registerModule.walletsClient(gh<_i4.GrpcOrGrpcWebClientChannel>()));
     gh.factory<_i8.AuthMessageClientInterceptor>(
         () => _i8.AuthMessageClientInterceptor(gh<_i6.SupabaseAuthClient>()));
     gh.lazySingleton<_i9.IAuthenticationRepository>(
       () => _i10.AuthenticationRepository(gh<_i6.SupabaseAuthClient>()),
       instanceName: 'AuthenticationRepository',
     );
-    gh.factory<_i11.LoginCubit>(() => _i11.LoginCubit(
+    gh.singleton<_i11.WalletRepository>(
+        () => _i11.WalletRepository(gh<_i7.WalletsClient>()));
+    gh.factory<_i12.LoginCubit>(() => _i12.LoginCubit(
         gh<_i9.IAuthenticationRepository>(
             instanceName: 'AuthenticationRepository')));
     return this;

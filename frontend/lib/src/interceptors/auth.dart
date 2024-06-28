@@ -2,12 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:grpc/grpc.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:hostel_hop_super_admin/main.dart';
+import 'package:hostel_hop_super_admin/src/module/register_module.dart';
 
 class AuthMessageClientInterceptor extends ClientInterceptor {
-
   FutureOr<void> _provider(Map<String, String> metadata, String uri) async {
-    var accessToken = Supabase.instance.client.auth.currentSession?.accessToken;
+    var accessToken = getIt.get<SupabaseAuthClient>().currentSession?.accessToken;
     if (accessToken != null) {
       metadata['Authorization'] = 'Bearer $accessToken';
     }
@@ -20,18 +20,6 @@ class AuthMessageClientInterceptor extends ClientInterceptor {
     CallOptions options,
     ClientUnaryInvoker<Q, R> invoker,
   ) {
-
-    var anonServices = [
-      // '/hostelhop.v1.Greeter',
-    ];
-
-    if (anonServices.any((element) => method.path.startsWith(element))) {
-      if (kDebugMode) {
-        print('Anonymous Unary call: ${method.path}');
-      }
-      return super.interceptUnary(method, request, options, invoker);
-    }
-
     var newOptions = options.mergedWith(CallOptions(providers: [_provider]));
     if (kDebugMode) {
       print('Protected Unary call: ${method.path}');

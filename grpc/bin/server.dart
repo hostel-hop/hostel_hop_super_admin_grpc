@@ -19,19 +19,22 @@ Future<void> main(List<String> args) async {
       ]),
       interceptors: [
         (ServiceCall call, ServiceMethod method) {
+          print('Received call to ${method.name}');
           final metadata = call.clientMetadata;
 
           if (metadata == null) {
             throw GrpcError.unauthenticated('No metadata provided');
           }
 
-          final authorization = metadata['Authorization'];
+          final authorization = metadata['authorization'];
 
           if (authorization == null) {
             throw GrpcError.unauthenticated('No token provided');
           }
 
           final token = authorization.split('Bearer ')[1];
+
+          print('Token: $token');
 
           final isValid = JWTUtilis.isTokenValidForSuperAdmin(token);
 
