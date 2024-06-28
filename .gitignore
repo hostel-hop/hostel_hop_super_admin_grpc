@@ -12,3 +12,4 @@ tsconfig.tsbuildinfo
 .idea
 grpc/.env
 .dart_tool
+.env
