@@ -1,0 +1,36 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  annotations:
+  name: hostelhop-grpc-dev
+  labels:
+    cloud.googleapis.com/location: "us-central1"
+spec:
+  template:
+    spec:
+      containers:
+        - image: "gcr.io/hostel-hop-dev/grpc-envoy"
+          ports:
+            - containerPort: 8080
+        - image: "gcr.io/hostel-hop-dev/grpc-backend"
+          env:
+            - name: STREAM_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: STREAM_API_KEY
+                  key: latest
+            - name: STREAM_API_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: STREAM_API_SECRET
+                  key: latest
+            - name: SUPABASE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: SUPABASE_KEY
+                  key: latest
+            - name: SUPABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: SUPABASE_URL
+                  key: latest

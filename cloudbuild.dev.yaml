@@ -1,0 +1,59 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+steps:
+  - id: 'build-pendragon'
+    name: 'gcr.io/cloud-builders/gcloud'
+    args: [ 'builds', 'submit', '--tag', 'gcr.io/hostel-hop-dev/pendragon-dev' ]
+    dir: 'pendragon'
+  - id: 'deploy-pendragon'
+    name: 'gcr.io/cloud-builders/gcloud'
+    args: [
+      'run', 'deploy', 'pendragon-dev',
+      '--image', 'gcr.io/hostel-hop-dev/pendragon-dev',
+      '--region', 'europe-west6',
+      '--platform', 'managed',
+      '--min-instances', '0',
+      '--max-instances', '1',
+      '--execution-environment', 'gen2',
+      '--update-secrets', 'DB_DSN=DB_DSN:latest',
+      '--update-secrets', 'SUPABASE_KEY=SUPABASE_KEY:latest',
+      '--update-secrets', 'SUPABASE_URL=SUPABASE_URL:latest',
+    ]
+    waitFor: [ 'build-pendragon' ]
+  - id: 'build-playground-app'
+    name: 'gcr.io/cloud-builders/gcloud'
+    args: [ 'builds', 'submit', '--tag', 'gcr.io/hostel-hop-dev/playground-dev' ]
+    dir: 'playground'
+  - id: 'deploy-playground-app'
+    name: 'gcr.io/cloud-builders/gcloud'
+    args: [
+      'run', 'deploy', 'playground-dev',
+      '--image', 'gcr.io/hostel-hop-dev/playground-dev',
+      '--region', 'us-central1',
+      '--platform', 'managed',
+      '--min-instances', '0',
+      '--max-instances', '1',
+      '--execution-environment', 'gen2'
+    ]
+    waitFor: [ 'build-playground-app' ]
+  - id: 'build-grpc-backend'
+    name: 'gcr.io/cloud-builders/gcloud'
+    args: [ 'builds', 'submit', '--tag', 'gcr.io/hostel-hop-dev/grpc-backend' ]
+    dir: 'grpc'
+  - id: 'build-grpc-envoy'
+    name: 'gcr.io/cloud-builders/gcloud'
+    args: [ 'builds', 'submit', '--tag', 'gcr.io/hostel-hop-dev/grpc-envoy' ]
+    dir: 'envoy'
+  - id: 'deploy-sidecar-grpc'
+    name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'beta'
+      - 'run'
+      - 'services'
+      - 'replace'
+      - 'sidecar-grpc-dev.yaml'
+    dir: '.'
+    waitFor: [ 'build-grpc-backend', 'build-grpc-envoy' ]
+
+serviceAccount: projects/hostel-hop-dev/serviceAccounts/342608150586-compute@developer.gserviceaccount.com

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package hostelhop.v1;
+
+service Properties {
+  rpc GetProperties (GetPropertiesRequest) returns (GetPropertiesResponse) {}
+}
+
+message GetPropertiesRequest {
+  string query = 1;
+}
+
+message GetPropertiesResponse {
+  repeated Property properties = 1;
+}
+
+message Property {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+}
+

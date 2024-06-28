@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package hostelhop.v1;
+
+service Wallets {
+  rpc GetWallet (GetWalletRequest) returns (GetWalletResponse) {}
+}
+
+message GetWalletRequest {
+  string backpackerId = 1;
+}
+
+message GetWalletResponse {
+  Wallet wallet = 1;
+}
+
+message Wallet {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+}

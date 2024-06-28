@@ -1,0 +1,27 @@
+name: hostel_hop_grpc
+description: Hostel Hop Dart gRPC server.
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  async: ^2.11.0
+  grpc: ^3.2.4
+  protobuf: ^3.1.0
+  get_it: ^7.7.0
+  dotenv: ^4.2.0
+  http: ^1.2.1
+  supabase: ^2.2.0
+  mongo_dart: ^0.9.4
+  injectable: ^2.4.2
+  dart_jsonwebtoken: ^2.14.0
+  googleapis: ^13.2.0
+  jose: ^0.3.4
+
+dev_dependencies:
+  injectable_generator: ^2.6.1
+  build_runner: ^2.4.11
+  lints: ^4.0.0
+  test: ^1.25.5
+  mockito: ^5.4.4

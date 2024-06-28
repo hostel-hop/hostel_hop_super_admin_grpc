@@ -1,0 +1,15 @@
+generator client {
+  provider = "dart run orm"
+  output   = "../lib/src/generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = "" // intentionally left blank because it is injected at runtime
+}
+
+model UserSample {
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId
+  email String  @unique
+  name  String?
+}

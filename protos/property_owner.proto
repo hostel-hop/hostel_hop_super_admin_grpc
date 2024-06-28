@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package hostelhop.v1;
+
+service PropertyOwners {
+  rpc GetPropertyOwners (GetPropertyOwnersRequest) returns (GetPropertyOwnersResponse) {}
+}
+
+message GetPropertyOwnersRequest {
+  string query = 1;
+}
+
+message GetPropertyOwnersResponse {
+  repeated PropertyOwner owners = 1;
+}
+
+message PropertyOwner {
+  string id = 1;
+  string name = 2;
+}
+
