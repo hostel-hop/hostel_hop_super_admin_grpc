@@ -42,7 +42,40 @@
                 "--dart-define=SUPABASE_URL=https://nrysczdjrimxsojrxvlz.supabase.co",
                  "--dart-define=SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5yeXNjemRqcmlteHNvanJ4dmx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTcxMDQxOTksImV4cCI6MjAzMjY4MDE5OX0.9mXGvdpLS6gyRCCXdaGlRxNEgjSJ43UOCjzdEqunNhQ"
              ]
+        },
+        {
+            "name": "hostel_hop_super_admin_grcp (debug mode)",
+            "request": "launch",
+            "type": "dart",
+            "program": "bin/server.dart",
+            "cwd": "grpc",
+        },
+        {
+            "name": "hostel_hop_super_admin_grcp (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "program": "bin/server.dart",
+            "cwd": "grpc",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "hostel_hop_super_admin_grcp (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "program": "bin/server.dart",
+            "cwd": "grpc",
+            "flutterMode": "release"
+        },
+    ],
+    "compounds": [
+        {
+          "name": "GRPC/Frontend Debug",
+          "configurations": [
+            "hostel_hop_super_admin (debug mode)",
+            "hostel_hop_super_admin_grcp (debug mode)"
+          ],
+          "stopAll": true
         }
-    ]
+      ]
 }
 

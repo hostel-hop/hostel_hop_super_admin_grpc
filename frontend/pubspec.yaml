@@ -25,6 +25,10 @@ dependencies:
   grpc: ^3.2.4
   protobuf: ^3.1.0
   flutter_hooks: ^0.20.5
+  data_table_2: ^2.5.15
+  anim_search_bar: ^2.0.3
+  animate_do: ^3.3.4
+  google_fonts: ^6.2.1
 
 dev_dependencies:
   flutter_test:

@@ -14,7 +14,7 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:mongo_dart/mongo_dart.dart' as _i4;
 
 import '../module/register_module.dart' as _i7;
-import '../services/property_owner.dart' as _i6;
+import '../services/property_owner_service.dart' as _i6;
 import '../services/wallet.dart' as _i5;
 
 extension GetItInjectableX on _i1.GetIt {

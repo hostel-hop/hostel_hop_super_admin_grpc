@@ -2,32 +2,17 @@ import 'dart:convert';
 
 import 'package:dotenv/dotenv.dart';
 import 'package:get_it/get_it.dart';
-import 'package:googleapis/secretmanager/v1.dart';
-import 'package:googleapis_auth/auth_io.dart';
 import 'package:http/http.dart' as http;
 import 'package:jose/jose.dart';
 
 mixin SkyflowGenerateBearerToken {
-  static final String googleProject =
-      GetIt.instance.get<DotEnv>()['GOOGLE_PROJECT_ID']!;
+  static final String credentialsEncoded =
+      GetIt.instance.get<DotEnv>()['SKYFLOW_SERVICE_ACCOUNT']!;
 
   Future<Map<String, dynamic>?> _getSkyflowCredentials(
-    String secretName,
   ) async {
     try {
-      final client = await clientViaApplicationDefaultCredentials(
-        scopes: const [
-          SecretManagerApi.cloudPlatformScope,
-        ],
-      );
-
-      final api = SecretManagerApi(client);
-
-      final secret = await api.projects.secrets.versions.access(
-        'projects/${googleProject}/secrets/$secretName/versions/1',
-      );
-
-      final jsonEncoded = utf8.decode(base64.decode(secret.payload!.data!));
+      final jsonEncoded = utf8.decode(base64.decode(credentialsEncoded));
 
       final creds = jsonDecode(jsonEncoded) as Map<String, dynamic>;
 
@@ -83,8 +68,8 @@ mixin SkyflowGenerateBearerToken {
     return json['accessToken'] as String;
   }
 
-  Future<String> generateBearerToken(String secretName) async {
-    final creds = await _getSkyflowCredentials(secretName);
+  Future<String> generateBearerToken() async {
+    final creds = await _getSkyflowCredentials();
 
     if (creds == null) {
       throw Exception('Skyflow credentials not found');

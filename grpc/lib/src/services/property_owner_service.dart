@@ -1,10 +1,12 @@
 import 'dart:convert';
 
+import 'package:bcrypt/bcrypt.dart';
 import 'package:dotenv/dotenv.dart';
-import 'package:grpc/grpc.dart';
+import 'package:grpc/grpc.dart' hide Response;
 import 'package:hostel_hop_grpc/src/generated/property_owners.pbgrpc.dart';
 import 'package:hostel_hop_grpc/src/mixins/skyflow_generate_bearer_token.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
@@ -27,16 +29,52 @@ class PropertyOwnersService extends PropertyOwnersServiceBase
   @override
   Future<GetPropertyOwnersResponse> getPropertyOwners(
       ServiceCall call, GetPropertyOwnersRequest request) async {
-    final bearerToken = await generateBearerToken(secretName);
+    final bearerToken = await generateBearerToken();
 
-    final response = await http.get(
-      Uri.parse('$_vaultUrl/v1/vaults/$_vaultId/$table'),
-      headers: {
-        'Authorization': 'Bearer ${bearerToken}',
-      },
-    );
+    final query = request.query;
+    late final Response response;
+
+    if (query.isEmpty) {
+      response = await http.get(
+        Uri.parse('$_vaultUrl/v1/vaults/$_vaultId/$table'),
+        headers: {
+          'Authorization': 'Bearer ${bearerToken}',
+        },
+      );
+    } else {
+      // search on first_name, last_name, email, hostel_hop_id for exact matches no likes
+      final sqlQuery =
+          "SELECT * FROM $table WHERE email = '$query' OR first_name = '$query' OR last_name = '$query' OR hostel_hop_id = '$query'";
+
+      final json = {
+        'query': sqlQuery,
+      };
+
+      final body = jsonEncode(json);
+
+      print(body);
+
+      response = await http.post(
+        Uri.parse('$_vaultUrl/v1/vaults/$_vaultId/query'),
+        headers: {
+          'Authorization': 'Bearer ${bearerToken}',
+          'Content-Type': 'application/json',
+        },
+        body: body,
+      );
+    }
 
     final json = jsonDecode(response.body);
+
+    if (json['error'] != null) {
+      final code = json['error']['http_code'];
+
+      if (code == 404) {
+        return GetPropertyOwnersResponse();
+      }
+
+      throw GrpcError.internal(json['error']);
+    }
 
     final records = json['records'] as List;
 
@@ -48,6 +86,7 @@ class PropertyOwnersService extends PropertyOwnersServiceBase
         firstName: fields['first_name'],
         lastName: fields['last_name'],
         email: fields['email'],
+        hostelHopId: fields['hostel_hop_id'],
       );
     }).toList();
 
@@ -63,7 +102,7 @@ class PropertyOwnersService extends PropertyOwnersServiceBase
     UpdatePropertyOwnerRequest request,
   ) async {
     try {
-      final bearerToken = await generateBearerToken(secretName);
+      final bearerToken = await generateBearerToken();
 
       final body = {
         'record': {
@@ -98,7 +137,7 @@ class PropertyOwnersService extends PropertyOwnersServiceBase
       final owner = await _propertyOwners.findOne(
         where.eq(
           '_id',
-          request.hostelHopId,
+          ObjectId.fromHexString(request.hostelHopId),
         ),
       );
 
@@ -106,20 +145,30 @@ class PropertyOwnersService extends PropertyOwnersServiceBase
         return Future.error('Property owner not found');
       }
 
-      await _propertyOwners.updateOne(
+      final encryptedPassword = _encryptPasswordBcrypt(request.password);
+
+      final update = await _propertyOwners.updateOne(
         where.eq(
           '_id',
-          request.hostelHopId,
+          ObjectId.fromHexString(request.hostelHopId),
         ),
         modify.set(
           'authenticationInfo.password',
-          request.password,
+          encryptedPassword,
         ),
       );
+
+      if (update.isFailure) {
+        return Future.error('Failed to update password');
+      }
 
       return UpdatePropertyOwnerPasswordResponse();
     } catch (e) {
       return Future.error(e);
     }
+  }
+
+  String _encryptPasswordBcrypt(String password) {
+    return BCrypt.hashpw(password, BCrypt.gensalt());
   }
 }
