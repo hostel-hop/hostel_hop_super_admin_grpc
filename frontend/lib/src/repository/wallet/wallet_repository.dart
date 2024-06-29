@@ -6,14 +6,4 @@ class WalletRepository {
   final WalletsClient _client;
 
   WalletRepository(this._client);
-
-  Future<void> getWallet() async {
-    try {
-      final response = await _client.getWallet(GetWalletRequest());
-
-      print(response);
-    } catch (e) {
-      print(e);
-    }
-  }
 }

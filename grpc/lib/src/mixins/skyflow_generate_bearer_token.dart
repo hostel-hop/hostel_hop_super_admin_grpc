@@ -78,7 +78,9 @@ mixin SkyflowGenerateBearerToken {
       body: jsonEncode(body),
     );
 
-    return response.body;
+    final json = jsonDecode(response.body);
+
+    return json['accessToken'] as String;
   }
 
   Future<String> generateBearerToken(String secretName) async {

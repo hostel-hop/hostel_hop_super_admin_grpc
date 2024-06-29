@@ -47,7 +47,7 @@ class _LoginContentState extends State<_LoginContent> {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state.status == LoginStatus.success) {
-          context.goNamed('home');
+          context.goNamed('owners');
         }
       },
       child: Scaffold(

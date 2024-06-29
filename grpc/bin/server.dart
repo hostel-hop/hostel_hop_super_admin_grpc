@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:grpc/grpc.dart';
 import 'package:hostel_hop_grpc/src/injector/injector.config.dart';
+import 'package:hostel_hop_grpc/src/services/property_owner.dart';
 import 'package:hostel_hop_grpc/src/services/wallet.dart';
 import 'package:hostel_hop_grpc/src/utils/jwt.dart';
 import 'package:injectable/injectable.dart';
@@ -13,6 +14,7 @@ Future<void> main(List<String> args) async {
   final server = Server.create(
       services: [
         getIt.get<WalletsService>(),
+        getIt.get<PropertyOwnersService>(),
       ],
       codecRegistry: CodecRegistry(codecs: const [
         GzipCodec(),

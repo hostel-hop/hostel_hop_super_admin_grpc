@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package hostelhop.v1;
+
+service PropertyOwners {
+  rpc GetPropertyOwners (GetPropertyOwnersRequest) returns (GetPropertyOwnersResponse) {}
+  rpc UpdatePropertyOwner (UpdatePropertyOwnerRequest) returns (UpdatePropertyOwnerResponse) {}
+  rpc UpdatePropertyOwnerPassword (UpdatePropertyOwnerPasswordRequest) returns (UpdatePropertyOwnerPasswordResponse) {}
+}
+
+message GetPropertyOwnersRequest {
+  string query = 1;
+}
+
+message GetPropertyOwnersResponse {
+  repeated PropertyOwner owners = 1;
+}
+
+message UpdatePropertyOwnerRequest {
+  string skyflow_id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string email = 4;
+}
+
+message UpdatePropertyOwnerResponse {}
+
+
+message UpdatePropertyOwnerPasswordRequest {
+  string hostel_hop_id = 1;
+  string password = 2;
+}
+
+message UpdatePropertyOwnerPasswordResponse {}
+
+message PropertyOwner {
+  string skyflow_id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string hostel_hop_id = 4;
+  string email = 5;
+}
+

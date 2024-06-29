@@ -1,6 +1,6 @@
 //
 //  Generated code. Do not modify.
-//  source: property_owner.proto
+//  source: property_owners.proto
 //
 // @dart = 2.12
 
