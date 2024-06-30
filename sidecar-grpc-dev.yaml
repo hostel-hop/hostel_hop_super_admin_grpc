@@ -2,7 +2,7 @@ apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   annotations:
-  name: hostelhop-grpc-dev
+  name: hostelhop-super-admin-grpc-dev
   labels:
     cloud.googleapis.com/location: "europe-west6"
 spec:

@@ -51,8 +51,6 @@ class PropertyOwnersService extends PropertyOwnersServiceBase
 
       final body = jsonEncode(json);
 
-      print(body);
-
       response = await http.post(
         Uri.parse('$_vaultUrl/v1/vaults/$_vaultId/query'),
         headers: {
