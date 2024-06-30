@@ -61,7 +61,7 @@ class WalletsContent extends HookWidget {
                 DataCell(Text(
                   wallet.balanceOfPendingWithdrawableCredits.toString(),
                 )),
-                 DataCell(Row(
+                DataCell(Row(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -132,15 +132,7 @@ class WalletsContent extends HookWidget {
                                             ),
                                             const SizedBox(width: 10),
                                             TextButton(
-                                              onPressed: () {
-                                                cubit.updatePassword(
-                                                  hostelHopId:
-                                                      wallet.hostelHopId,
-                                                  password:
-                                                      passwordController.text,
-                                                );
-                                                Navigator.of(context).pop();
-                                              },
+                                              onPressed: () {},
                                               child: const Text('Update'),
                                             ),
                                           ],
@@ -218,13 +210,7 @@ class WalletsContent extends HookWidget {
                                             ),
                                             const SizedBox(width: 10),
                                             TextButton(
-                                              onPressed: () {
-                                                cubit.updateEmail(
-                                                  skyFlowId: wallet.skyflowId,
-                                                  email: emailController.text,
-                                                );
-                                                Navigator.of(context).pop();
-                                              },
+                                              onPressed: () {},
                                               child: const Text('Update'),
                                             ),
                                           ],
