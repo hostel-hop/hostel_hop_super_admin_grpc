@@ -55,6 +55,20 @@ final $typed_data.Uint8List updatePropertyOwnerRequestDescriptor = $convert.base
     '93SWQSHQoKZmlyc3RfbmFtZRgCIAEoCVIJZmlyc3ROYW1lEhsKCWxhc3RfbmFtZRgDIAEoCVII'
     'bGFzdE5hbWUSFAoFZW1haWwYBCABKAlSBWVtYWls');
 
+@$core.Deprecated('Use updatePropertyOwnerEmailRequestDescriptor instead')
+const UpdatePropertyOwnerEmailRequest$json = {
+  '1': 'UpdatePropertyOwnerEmailRequest',
+  '2': [
+    {'1': 'skyflow_id', '3': 1, '4': 1, '5': 9, '10': 'skyflowId'},
+    {'1': 'email', '3': 2, '4': 1, '5': 9, '10': 'email'},
+  ],
+};
+
+/// Descriptor for `UpdatePropertyOwnerEmailRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List updatePropertyOwnerEmailRequestDescriptor = $convert.base64Decode(
+    'Ch9VcGRhdGVQcm9wZXJ0eU93bmVyRW1haWxSZXF1ZXN0Eh0KCnNreWZsb3dfaWQYASABKAlSCX'
+    'NreWZsb3dJZBIUCgVlbWFpbBgCIAEoCVIFZW1haWw=');
+
 @$core.Deprecated('Use updatePropertyOwnerResponseDescriptor instead')
 const UpdatePropertyOwnerResponse$json = {
   '1': 'UpdatePropertyOwnerResponse',
@@ -86,6 +100,15 @@ const UpdatePropertyOwnerPasswordResponse$json = {
 /// Descriptor for `UpdatePropertyOwnerPasswordResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List updatePropertyOwnerPasswordResponseDescriptor = $convert.base64Decode(
     'CiNVcGRhdGVQcm9wZXJ0eU93bmVyUGFzc3dvcmRSZXNwb25zZQ==');
+
+@$core.Deprecated('Use updatePropertyOwnerEmailResponseDescriptor instead')
+const UpdatePropertyOwnerEmailResponse$json = {
+  '1': 'UpdatePropertyOwnerEmailResponse',
+};
+
+/// Descriptor for `UpdatePropertyOwnerEmailResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List updatePropertyOwnerEmailResponseDescriptor = $convert.base64Decode(
+    'CiBVcGRhdGVQcm9wZXJ0eU93bmVyRW1haWxSZXNwb25zZQ==');
 
 @$core.Deprecated('Use propertyOwnerDescriptor instead')
 const PropertyOwner$json = {

@@ -6,6 +6,8 @@ service PropertyOwners {
   rpc GetPropertyOwners (GetPropertyOwnersRequest) returns (GetPropertyOwnersResponse) {}
   rpc UpdatePropertyOwner (UpdatePropertyOwnerRequest) returns (UpdatePropertyOwnerResponse) {}
   rpc UpdatePropertyOwnerPassword (UpdatePropertyOwnerPasswordRequest) returns (UpdatePropertyOwnerPasswordResponse) {}
+  rpc UpdatePropertyOwnerEmail (UpdatePropertyOwnerEmailRequest) returns (UpdatePropertyOwnerEmailResponse) {}
+  
 }
 
 message GetPropertyOwnersRequest {
@@ -23,6 +25,12 @@ message UpdatePropertyOwnerRequest {
   string email = 4;
 }
 
+
+message UpdatePropertyOwnerEmailRequest {
+  string skyflow_id = 1;
+  string email = 2;
+}
+
 message UpdatePropertyOwnerResponse {}
 
 
@@ -33,6 +41,8 @@ message UpdatePropertyOwnerPasswordRequest {
 
 message UpdatePropertyOwnerPasswordResponse {}
 
+message UpdatePropertyOwnerEmailResponse {}
+
 message PropertyOwner {
   string skyflow_id = 1;
   string first_name = 2;
@@ -40,4 +50,6 @@ message PropertyOwner {
   string hostel_hop_id = 4;
   string email = 5;
 }
+
+
 

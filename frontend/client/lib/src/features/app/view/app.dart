@@ -6,6 +6,7 @@ import 'package:hostel_hop_super_admin/src/features/home/view/home_page.dart';
 import 'package:hostel_hop_super_admin/src/features/login/view/login_page.dart';
 import 'package:hostel_hop_super_admin/src/features/property_owners/view/property_owners_page.dart';
 import 'package:hostel_hop_super_admin/src/features/session/cubit/session_cubit.dart';
+import 'package:hostel_hop_super_admin/src/features/wallets/view/wallets_page.dart';
 import 'package:hostel_hop_super_admin/src/shared/theme/color_themes.dart';
 import 'package:hostel_hop_super_admin/src/shared/theme/text_themes.dart';
 
@@ -31,6 +32,14 @@ final GoRouter _router = GoRouter(
               pageBuilder: (context, state) {
                 return const NoTransitionPage(
                   child: PropertyOwnersPage(),
+                );
+              }),
+              GoRoute(
+              name: 'wallets',
+              path: '/wallets',
+              pageBuilder: (context, state) {
+                return const NoTransitionPage(
+                  child: WalletsPage(),
                 );
               }),
         ]),

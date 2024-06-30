@@ -128,6 +128,47 @@ class PropertyOwnersService extends PropertyOwnersServiceBase
   }
 
   @override
+  Future<UpdatePropertyOwnerEmailResponse> updatePropertyOwnerEmail(
+    ServiceCall call,
+    UpdatePropertyOwnerEmailRequest request,
+  ) async {
+    try {
+      final bearerToken = await generateBearerToken();
+
+      final json = {
+        'record': {
+          'fields': {
+            'email': request.email,
+          }
+        },
+        'tokenization': true,
+      };
+
+      final body = jsonEncode(json);
+
+      final response = await http.put(
+        Uri.parse('$_vaultUrl/v1/vaults/$_vaultId/$table/${request.skyflowId}'),
+        headers: {
+          'Authorization': 'Bearer ${bearerToken}',
+          'Content-Type': 'application/json',
+        },
+        body: body,
+      );
+
+      final data = jsonDecode(response.body);
+
+      if (data['error'] != null) {
+
+        throw GrpcError.internal(data['error']);
+      }
+
+      return UpdatePropertyOwnerEmailResponse();
+    } catch (e) {
+      throw GrpcError.internal(e.toString());
+    }
+  }
+
+  @override
   Future<UpdatePropertyOwnerPasswordResponse> updatePropertyOwnerPassword(
       ServiceCall call, UpdatePropertyOwnerPasswordRequest request) async {
     try {

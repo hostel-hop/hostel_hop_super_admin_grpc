@@ -66,4 +66,24 @@ class PropertyOwnerRepository implements IPropertyOwnerRepository {
       return left(ServerFailure(message: e.toString()));
     }
   }
+
+
+  @override
+  Future<Either<Failure, UpdatePropertyOwnerEmailResponse>> updatePropertyOwnerEmail(
+    String skyflowId,
+    String email,
+  ) async {
+    try {
+      final response = await _client.updatePropertyOwnerEmail(
+        UpdatePropertyOwnerEmailRequest(
+          skyflowId: skyflowId,
+          email: email,
+        ),
+      );
+
+      return right(response);
+    } catch (e) {
+      return left(ServerFailure(message: e.toString()));
+    }
+  }
 }

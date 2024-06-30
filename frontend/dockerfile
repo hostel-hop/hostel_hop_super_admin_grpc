@@ -1,0 +1,31 @@
+FROM ghcr.io/cirruslabs/flutter:stable as frontend
+
+WORKDIR /app
+COPY ./client ./
+RUN flutter pub get
+RUN flutter build web --release -t lib/main.dart --dart-define=SUPABASE_URL=https://nrysczdjrimxsojrxvlz.supabase.co --dart-define=SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5yeXNjemRqcmlteHNvanJ4dmx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTcxMDQxOTksImV4cCI6MjAzMjY4MDE5OX0.9mXGvdpLS6gyRCCXdaGlRxNEgjSJ43UOCjzdEqunNhQ --dart-define=GOOGLE_WEB_CLIENT_ID=342608150586-n89ota6s5na8957nu3l0achpt97o7o0n.apps.googleusercontent.com --dart-define=GOOGLE_CLIENT_ID=342608150586-3pks9tcv4dj33ai7hqu6sqdibq49994r.apps.googleusercontent.com
+
+# Specify the Dart SDK base image version using dart:<version> (ex: dart:2.12)
+FROM dart:stable AS backend
+
+# Resolve app dependencies.
+WORKDIR /app
+COPY ./server/pubspec.* ./
+RUN dart pub get
+
+# Copy app source code and AOT compile it.
+COPY ./server .
+# Ensure packages are still up-to-date if anything has changed
+RUN dart pub get --offline
+RUN dart compile exe bin/server.dart -o bin/server
+
+# Build minimal serving image from AOT-compiled `/server` and required system
+# libraries and configuration files stored in `/runtime/` from the build stage.
+FROM alpine:latest
+COPY --from=backend /runtime/ /
+COPY --from=backend /app/bin/server /app/bin/
+COPY --from=frontend /app/build/web /app/bin/build/web
+
+# Start server.
+EXPOSE 8080
+CMD ["/app/bin/server"]

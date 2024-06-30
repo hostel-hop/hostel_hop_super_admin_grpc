@@ -13,6 +13,100 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
+class GetWalletsRequest extends $pb.GeneratedMessage {
+  factory GetWalletsRequest({
+    $core.String? query,
+  }) {
+    final $result = create();
+    if (query != null) {
+      $result.query = query;
+    }
+    return $result;
+  }
+  GetWalletsRequest._() : super();
+  factory GetWalletsRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetWalletsRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetWalletsRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'hostelhop.v1'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'query')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetWalletsRequest clone() => GetWalletsRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetWalletsRequest copyWith(void Function(GetWalletsRequest) updates) => super.copyWith((message) => updates(message as GetWalletsRequest)) as GetWalletsRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetWalletsRequest create() => GetWalletsRequest._();
+  GetWalletsRequest createEmptyInstance() => create();
+  static $pb.PbList<GetWalletsRequest> createRepeated() => $pb.PbList<GetWalletsRequest>();
+  @$core.pragma('dart2js:noInline')
+  static GetWalletsRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetWalletsRequest>(create);
+  static GetWalletsRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get query => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set query($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasQuery() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearQuery() => clearField(1);
+}
+
+class GetWalletsResponse extends $pb.GeneratedMessage {
+  factory GetWalletsResponse({
+    $core.Iterable<Wallet>? wallets,
+  }) {
+    final $result = create();
+    if (wallets != null) {
+      $result.wallets.addAll(wallets);
+    }
+    return $result;
+  }
+  GetWalletsResponse._() : super();
+  factory GetWalletsResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetWalletsResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetWalletsResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'hostelhop.v1'), createEmptyInstance: create)
+    ..pc<Wallet>(1, _omitFieldNames ? '' : 'wallets', $pb.PbFieldType.PM, subBuilder: Wallet.create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetWalletsResponse clone() => GetWalletsResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetWalletsResponse copyWith(void Function(GetWalletsResponse) updates) => super.copyWith((message) => updates(message as GetWalletsResponse)) as GetWalletsResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetWalletsResponse create() => GetWalletsResponse._();
+  GetWalletsResponse createEmptyInstance() => create();
+  static $pb.PbList<GetWalletsResponse> createRepeated() => $pb.PbList<GetWalletsResponse>();
+  @$core.pragma('dart2js:noInline')
+  static GetWalletsResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetWalletsResponse>(create);
+  static GetWalletsResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<Wallet> get wallets => $_getList(0);
+}
+
 class GetWalletRequest extends $pb.GeneratedMessage {
   factory GetWalletRequest({
     $core.String? backpackerId,
@@ -117,19 +211,31 @@ class GetWalletResponse extends $pb.GeneratedMessage {
 
 class Wallet extends $pb.GeneratedMessage {
   factory Wallet({
-    $core.String? id,
-    $core.String? name,
-    $core.String? description,
+    $core.String? backpackerId,
+    $core.String? username,
+    $core.int? balanceOfWithdrawableCredits,
+    $core.int? balanceOfNonWithdrawableCredits,
+    $core.int? balanceOfPendingWithdrawableCredits,
+    $core.int? balanceOfPendingNonWithdrawableCredits,
   }) {
     final $result = create();
-    if (id != null) {
-      $result.id = id;
+    if (backpackerId != null) {
+      $result.backpackerId = backpackerId;
     }
-    if (name != null) {
-      $result.name = name;
+    if (username != null) {
+      $result.username = username;
     }
-    if (description != null) {
-      $result.description = description;
+    if (balanceOfWithdrawableCredits != null) {
+      $result.balanceOfWithdrawableCredits = balanceOfWithdrawableCredits;
+    }
+    if (balanceOfNonWithdrawableCredits != null) {
+      $result.balanceOfNonWithdrawableCredits = balanceOfNonWithdrawableCredits;
+    }
+    if (balanceOfPendingWithdrawableCredits != null) {
+      $result.balanceOfPendingWithdrawableCredits = balanceOfPendingWithdrawableCredits;
+    }
+    if (balanceOfPendingNonWithdrawableCredits != null) {
+      $result.balanceOfPendingNonWithdrawableCredits = balanceOfPendingNonWithdrawableCredits;
     }
     return $result;
   }
@@ -138,9 +244,12 @@ class Wallet extends $pb.GeneratedMessage {
   factory Wallet.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Wallet', package: const $pb.PackageName(_omitMessageNames ? '' : 'hostelhop.v1'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'id')
-    ..aOS(2, _omitFieldNames ? '' : 'name')
-    ..aOS(3, _omitFieldNames ? '' : 'description')
+    ..aOS(1, _omitFieldNames ? '' : 'backpackerId')
+    ..aOS(2, _omitFieldNames ? '' : 'username')
+    ..a<$core.int>(3, _omitFieldNames ? '' : 'balanceOfWithdrawableCredits', $pb.PbFieldType.O3)
+    ..a<$core.int>(4, _omitFieldNames ? '' : 'balanceOfNonWithdrawableCredits', $pb.PbFieldType.O3)
+    ..a<$core.int>(5, _omitFieldNames ? '' : 'balanceOfPendingWithdrawableCredits', $pb.PbFieldType.O3)
+    ..a<$core.int>(6, _omitFieldNames ? '' : 'balanceOfPendingNonWithdrawableCredits', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -166,31 +275,58 @@ class Wallet extends $pb.GeneratedMessage {
   static Wallet? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get id => $_getSZ(0);
+  $core.String get backpackerId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set id($core.String v) { $_setString(0, v); }
+  set backpackerId($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasId() => $_has(0);
+  $core.bool hasBackpackerId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearId() => clearField(1);
+  void clearBackpackerId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get name => $_getSZ(1);
+  $core.String get username => $_getSZ(1);
   @$pb.TagNumber(2)
-  set name($core.String v) { $_setString(1, v); }
+  set username($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasName() => $_has(1);
+  $core.bool hasUsername() => $_has(1);
   @$pb.TagNumber(2)
-  void clearName() => clearField(2);
+  void clearUsername() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.String get description => $_getSZ(2);
+  $core.int get balanceOfWithdrawableCredits => $_getIZ(2);
   @$pb.TagNumber(3)
-  set description($core.String v) { $_setString(2, v); }
+  set balanceOfWithdrawableCredits($core.int v) { $_setSignedInt32(2, v); }
   @$pb.TagNumber(3)
-  $core.bool hasDescription() => $_has(2);
+  $core.bool hasBalanceOfWithdrawableCredits() => $_has(2);
   @$pb.TagNumber(3)
-  void clearDescription() => clearField(3);
+  void clearBalanceOfWithdrawableCredits() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.int get balanceOfNonWithdrawableCredits => $_getIZ(3);
+  @$pb.TagNumber(4)
+  set balanceOfNonWithdrawableCredits($core.int v) { $_setSignedInt32(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasBalanceOfNonWithdrawableCredits() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearBalanceOfNonWithdrawableCredits() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.int get balanceOfPendingWithdrawableCredits => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set balanceOfPendingWithdrawableCredits($core.int v) { $_setSignedInt32(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasBalanceOfPendingWithdrawableCredits() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearBalanceOfPendingWithdrawableCredits() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.int get balanceOfPendingNonWithdrawableCredits => $_getIZ(5);
+  @$pb.TagNumber(6)
+  set balanceOfPendingNonWithdrawableCredits($core.int v) { $_setSignedInt32(5, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasBalanceOfPendingNonWithdrawableCredits() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearBalanceOfPendingNonWithdrawableCredits() => clearField(6);
 }
 
 

@@ -3,30 +3,34 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hostel_hop_super_admin/generated/assets.gen.dart';
 
-enum HomeTab {
-  owners,
-}
+enum HomeTab { owners, wallets }
 
 extension HomeTabExtension on HomeTab {
   static String getHomeTabName(HomeTab homeTab, BuildContext context) {
     switch (homeTab) {
       case HomeTab.owners:
         return 'Owners';
+      case HomeTab.wallets:
+        return 'Wallets';
     }
   }
 
   static HomeTab fromPath(String path) {
     if (path.contains('/owners')) {
       return HomeTab.owners;
+    } else if (path.contains('/wallets')) {
+      return HomeTab.wallets;
     }
 
     return HomeTab.owners;
   }
 
-  String get path {
+  String get name {
     switch (this) {
       case HomeTab.owners:
-        return '/owners';
+        return 'owners';
+      case HomeTab.wallets:
+        return 'wallets';
     }
   }
 
@@ -34,6 +38,8 @@ extension HomeTabExtension on HomeTab {
     switch (this) {
       case HomeTab.owners:
         return const Icon(Icons.person);
+      case HomeTab.wallets:
+        return const Icon(Icons.wallet);
     }
   }
 
@@ -41,6 +47,8 @@ extension HomeTabExtension on HomeTab {
     switch (value) {
       case 0:
         return HomeTab.owners;
+      case 1:
+        return HomeTab.wallets;
     }
     return HomeTab.owners;
   }
@@ -120,9 +128,35 @@ class HomePage extends HookWidget {
                     ]),
                   ),
                 ),
+                Tab(
+                  iconMargin: EdgeInsets.zero,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: selectedIndex.value == 1
+                          ? Colors.transparent
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: selectedIndex.value == 0
+                            ? const Radius.circular(10)
+                            : Radius.zero,
+                      ),
+                    ),
+                    child: Row(children: [
+                      const SizedBox(width: 20),
+                      HomeTab.wallets.icon,
+                      const SizedBox(width: 10),
+                      Text(
+                        HomeTabExtension.getHomeTabName(
+                          HomeTab.wallets,
+                          context,
+                        ),
+                      )
+                    ]),
+                  ),
+                ),
               ],
               onTap: (index) {
-                context.goNamed(HomeTabExtension.fromValue(index).path);
+                context.goNamed(HomeTabExtension.fromValue(index).name);
               }),
           Expanded(child: child)
         ]),

@@ -16,4 +16,9 @@ abstract interface class IPropertyOwnerRepository {
     String lastName,
     String email,
   );
+
+    Future<Either<Failure, UpdatePropertyOwnerEmailResponse>> updatePropertyOwnerEmail(
+    String skyflowId,
+    String email,
+  );
 }
