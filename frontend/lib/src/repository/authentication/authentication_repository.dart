@@ -58,7 +58,8 @@ class AuthenticationRepository implements IAuthenticationRepository {
   }
 
   @override
-  Stream<User?> get user => _supabaseAuthClient.onAuthStateChange.map(
+  Stream<User?> get onAuthStateChange =>
+      _supabaseAuthClient.onAuthStateChange.map(
         (event) => event.session?.user,
       );
 }

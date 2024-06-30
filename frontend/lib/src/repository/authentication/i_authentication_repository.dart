@@ -7,5 +7,5 @@ abstract interface class IAuthenticationRepository {
     String idToken,
   );
   Future<Either<AuthenticatedFailure, Unit>> signOut();
-  Stream<User?> get user;
+  Stream<User?> get onAuthStateChange;
 }

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hostel_hop_super_admin/main.dart';
 import 'package:hostel_hop_super_admin/src/features/home/view/home_page.dart';
 import 'package:hostel_hop_super_admin/src/features/login/view/login_page.dart';
 import 'package:hostel_hop_super_admin/src/features/property_owners/view/property_owners_page.dart';
+import 'package:hostel_hop_super_admin/src/features/session/cubit/session_cubit.dart';
 import 'package:hostel_hop_super_admin/src/shared/theme/color_themes.dart';
 import 'package:hostel_hop_super_admin/src/shared/theme/text_themes.dart';
 
@@ -155,6 +158,12 @@ class MyApp extends StatelessWidget {
         ),
       ),
       routerConfig: _router,
+      builder: (context, child) {
+        return BlocProvider(
+          create: (context) => getIt<SessionCubit>(),
+          child: child,
+        );
+      },
     );
   }
 }
