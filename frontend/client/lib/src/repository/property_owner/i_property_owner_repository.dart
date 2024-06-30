@@ -9,9 +9,11 @@ abstract interface class IPropertyOwnerRepository {
     String id,
     String password,
   );
+  
   Future<Either<Failure, UpdatePropertyOwnerResponse>> updatePropertyOwner(
     String skyflowId,
-    String name,
+    String firstName,
+    String lastName,
     String email,
   );
 }

@@ -4,26 +4,16 @@ metadata:
   annotations:
   name: hostelhop-grpc-dev
   labels:
-    cloud.googleapis.com/location: "us-central1"
+    cloud.googleapis.com/location: "europe-west6"
 spec:
   template:
     spec:
       containers:
-        - image: "gcr.io/hostel-hop-dev/grpc-envoy"
+        - image: "gcr.io/hostel-hop-dev/super-admin-grpc-envoy"
           ports:
             - containerPort: 8080
-        - image: "gcr.io/hostel-hop-dev/grpc-backend"
+        - image: "gcr.io/hostel-hop-dev/super-admin-grpc-backend"
           env:
-            - name: STREAM_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: STREAM_API_KEY
-                  key: latest
-            - name: STREAM_API_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: STREAM_API_SECRET
-                  key: latest
             - name: SUPABASE_KEY
               valueFrom:
                 secretKeyRef:
@@ -33,4 +23,29 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: SUPABASE_URL
+                  key: latest
+            - name: SUPABASE_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: SUPABASE_JWT_SECRET
+                  key: latest
+            - name: SKYFLOW_VAULT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: SKYFLOW_VAULT_ID
+                  key: latest
+            - name: SKYFLOW_VAULT_URL
+              valueFrom:
+                secretKeyRef:
+                  name: SKYFLOW_VAULT_URL
+                  key: latest
+            - name: DB_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: DB_DSN
+                  key: latest
+            - name: PROPERTY_OWNER_SKYFLOW_SERVICE_ACCOUNT_BASE_64
+              valueFrom:
+                secretKeyRef:
+                  name: PROPERTY_OWNER_SKYFLOW_SERVICE_ACCOUNT_BASE_64
                   key: latest

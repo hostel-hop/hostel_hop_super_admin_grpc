@@ -6,11 +6,10 @@ import 'package:http/http.dart' as http;
 import 'package:jose/jose.dart';
 
 mixin SkyflowGenerateBearerToken {
-  static final String credentialsEncoded =
-      GetIt.instance.get<DotEnv>()['SKYFLOW_SERVICE_ACCOUNT']!;
+  static final String credentialsEncoded = GetIt.instance
+      .get<DotEnv>()['PROPERTY_OWNER_SKYFLOW_SERVICE_ACCOUNT_BASE_64']!;
 
-  Future<Map<String, dynamic>?> _getSkyflowCredentials(
-  ) async {
+  Future<Map<String, dynamic>?> _getSkyflowCredentials() async {
     try {
       final jsonEncoded = utf8.decode(base64.decode(credentialsEncoded));
 

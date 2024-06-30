@@ -10,7 +10,7 @@ abstract class RegisterModule {
 
   @preResolve
   Future<Db> db() async {
-    final db = await Db.create(dotEnv()['DB_URL']!);
+    final db = await Db.create(dotEnv()['DB_DSN']!);
 
     await db.open();
 

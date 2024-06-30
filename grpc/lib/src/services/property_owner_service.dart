@@ -18,7 +18,6 @@ class PropertyOwnersService extends PropertyOwnersServiceBase
   final String _vaultId;
   final String _vaultUrl;
   final String table = 'property_owners';
-  final String secretName = 'SKYFLOW_SERVICE_ACCOUNT';
 
   PropertyOwnersService(this._db, DotEnv env)
       : _vaultId = env['SKYFLOW_VAULT_ID']!,

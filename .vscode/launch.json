@@ -5,11 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "hostel_hop_super_admin (debug mode)",
+            "name": "hostel_hop_super_admin_frontend (debug mode)",
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart",
-            "cwd": "frontend",
+            "cwd": "frontend/client",
             "args": [
                "--dart-define=SUPABASE_URL=https://nrysczdjrimxsojrxvlz.supabase.co",
                 "--dart-define=SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5yeXNjemRqcmlteHNvanJ4dmx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTcxMDQxOTksImV4cCI6MjAzMjY4MDE5OX0.9mXGvdpLS6gyRCCXdaGlRxNEgjSJ43UOCjzdEqunNhQ",
@@ -20,11 +20,11 @@
             ]
         },
         {
-            "name": "hostel_hop_super_admin (profile mode)",
+            "name": "hostel_hop_super_admin_frontend (profile mode)",
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart",
-            "cwd": "frontend",
+            "cwd": "frontend/client",
             "flutterMode": "profile",
             "args": [
                 "--dart-define=SUPABASE_URL=https://nrysczdjrimxsojrxvlz.supabase.co",
@@ -32,11 +32,11 @@
              ]
         },
         {
-            "name": "hostel_hop_super_admin (release mode)",
+            "name": "hostel_hop_super_admin_frontend (release mode)",
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart",
-            "cwd": "frontend",
+            "cwd": "frontend/client",
             "flutterMode": "release",
             "args": [
                 "--dart-define=SUPABASE_URL=https://nrysczdjrimxsojrxvlz.supabase.co",
@@ -71,7 +71,7 @@
         {
           "name": "GRPC/Frontend Debug",
           "configurations": [
-            "hostel_hop_super_admin (debug mode)",
+            "hostel_hop_super_admin_frontend (debug mode)",
             "hostel_hop_super_admin_grcp (debug mode)"
           ],
           "stopAll": true

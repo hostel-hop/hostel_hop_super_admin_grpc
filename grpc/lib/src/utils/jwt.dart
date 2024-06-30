@@ -4,7 +4,7 @@ import 'package:dotenv/dotenv.dart';
 import 'package:get_it/get_it.dart';
 
 mixin JWTUtilis {
-  static final String secretKey = GetIt.instance.get<DotEnv>()['JWT_SECRET']!;
+  static final String secretKey = GetIt.instance.get<DotEnv>()['SUPABASE_JWT_SECRET']!;
 
   /// check if the JWT is valid
   static bool isTokenValidForSuperAdmin(String token) {

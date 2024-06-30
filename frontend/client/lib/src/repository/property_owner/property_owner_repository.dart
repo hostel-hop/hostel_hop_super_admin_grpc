@@ -47,14 +47,16 @@ class PropertyOwnerRepository implements IPropertyOwnerRepository {
   @override
   Future<Either<Failure, UpdatePropertyOwnerResponse>> updatePropertyOwner(
     String skyflowId,
-    String name,
+    String firstName,
+    String lastName,
     String email,
   ) async {
     try {
       final response = await _client.updatePropertyOwner(
         UpdatePropertyOwnerRequest(
           skyflowId: skyflowId,
-          firstName: name,
+          firstName: firstName,
+          lastName: lastName,
           email: email,
         ),
       );
