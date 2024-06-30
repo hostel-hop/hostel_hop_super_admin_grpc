@@ -33,6 +33,10 @@ class PropertyOwnersClient extends $grpc.Client {
       '/hostelhop.v1.PropertyOwners/UpdatePropertyOwnerPassword',
       ($1.UpdatePropertyOwnerPasswordRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $1.UpdatePropertyOwnerPasswordResponse.fromBuffer(value));
+  static final _$updatePropertyOwnerEmail = $grpc.ClientMethod<$1.UpdatePropertyOwnerEmailRequest, $1.UpdatePropertyOwnerEmailResponse>(
+      '/hostelhop.v1.PropertyOwners/UpdatePropertyOwnerEmail',
+      ($1.UpdatePropertyOwnerEmailRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.UpdatePropertyOwnerEmailResponse.fromBuffer(value));
 
   PropertyOwnersClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -50,6 +54,10 @@ class PropertyOwnersClient extends $grpc.Client {
 
   $grpc.ResponseFuture<$1.UpdatePropertyOwnerPasswordResponse> updatePropertyOwnerPassword($1.UpdatePropertyOwnerPasswordRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$updatePropertyOwnerPassword, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$1.UpdatePropertyOwnerEmailResponse> updatePropertyOwnerEmail($1.UpdatePropertyOwnerEmailRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$updatePropertyOwnerEmail, request, options: options);
   }
 }
 
@@ -79,6 +87,13 @@ abstract class PropertyOwnersServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $1.UpdatePropertyOwnerPasswordRequest.fromBuffer(value),
         ($1.UpdatePropertyOwnerPasswordResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$1.UpdatePropertyOwnerEmailRequest, $1.UpdatePropertyOwnerEmailResponse>(
+        'UpdatePropertyOwnerEmail',
+        updatePropertyOwnerEmail_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $1.UpdatePropertyOwnerEmailRequest.fromBuffer(value),
+        ($1.UpdatePropertyOwnerEmailResponse value) => value.writeToBuffer()));
   }
 
   $async.Future<$1.GetPropertyOwnersResponse> getPropertyOwners_Pre($grpc.ServiceCall call, $async.Future<$1.GetPropertyOwnersRequest> request) async {
@@ -93,7 +108,12 @@ abstract class PropertyOwnersServiceBase extends $grpc.Service {
     return updatePropertyOwnerPassword(call, await request);
   }
 
+  $async.Future<$1.UpdatePropertyOwnerEmailResponse> updatePropertyOwnerEmail_Pre($grpc.ServiceCall call, $async.Future<$1.UpdatePropertyOwnerEmailRequest> request) async {
+    return updatePropertyOwnerEmail(call, await request);
+  }
+
   $async.Future<$1.GetPropertyOwnersResponse> getPropertyOwners($grpc.ServiceCall call, $1.GetPropertyOwnersRequest request);
   $async.Future<$1.UpdatePropertyOwnerResponse> updatePropertyOwner($grpc.ServiceCall call, $1.UpdatePropertyOwnerRequest request);
   $async.Future<$1.UpdatePropertyOwnerPasswordResponse> updatePropertyOwnerPassword($grpc.ServiceCall call, $1.UpdatePropertyOwnerPasswordRequest request);
+  $async.Future<$1.UpdatePropertyOwnerEmailResponse> updatePropertyOwnerEmail($grpc.ServiceCall call, $1.UpdatePropertyOwnerEmailRequest request);
 }

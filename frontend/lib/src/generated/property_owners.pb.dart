@@ -199,6 +199,70 @@ class UpdatePropertyOwnerRequest extends $pb.GeneratedMessage {
   void clearEmail() => clearField(4);
 }
 
+class UpdatePropertyOwnerEmailRequest extends $pb.GeneratedMessage {
+  factory UpdatePropertyOwnerEmailRequest({
+    $core.String? skyflowId,
+    $core.String? email,
+  }) {
+    final $result = create();
+    if (skyflowId != null) {
+      $result.skyflowId = skyflowId;
+    }
+    if (email != null) {
+      $result.email = email;
+    }
+    return $result;
+  }
+  UpdatePropertyOwnerEmailRequest._() : super();
+  factory UpdatePropertyOwnerEmailRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory UpdatePropertyOwnerEmailRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpdatePropertyOwnerEmailRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'hostelhop.v1'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'skyflowId')
+    ..aOS(2, _omitFieldNames ? '' : 'email')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  UpdatePropertyOwnerEmailRequest clone() => UpdatePropertyOwnerEmailRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  UpdatePropertyOwnerEmailRequest copyWith(void Function(UpdatePropertyOwnerEmailRequest) updates) => super.copyWith((message) => updates(message as UpdatePropertyOwnerEmailRequest)) as UpdatePropertyOwnerEmailRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static UpdatePropertyOwnerEmailRequest create() => UpdatePropertyOwnerEmailRequest._();
+  UpdatePropertyOwnerEmailRequest createEmptyInstance() => create();
+  static $pb.PbList<UpdatePropertyOwnerEmailRequest> createRepeated() => $pb.PbList<UpdatePropertyOwnerEmailRequest>();
+  @$core.pragma('dart2js:noInline')
+  static UpdatePropertyOwnerEmailRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UpdatePropertyOwnerEmailRequest>(create);
+  static UpdatePropertyOwnerEmailRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get skyflowId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set skyflowId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasSkyflowId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSkyflowId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get email => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set email($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasEmail() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearEmail() => clearField(2);
+}
+
 class UpdatePropertyOwnerResponse extends $pb.GeneratedMessage {
   factory UpdatePropertyOwnerResponse() => create();
   UpdatePropertyOwnerResponse._() : super();
@@ -325,6 +389,38 @@ class UpdatePropertyOwnerPasswordResponse extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static UpdatePropertyOwnerPasswordResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UpdatePropertyOwnerPasswordResponse>(create);
   static UpdatePropertyOwnerPasswordResponse? _defaultInstance;
+}
+
+class UpdatePropertyOwnerEmailResponse extends $pb.GeneratedMessage {
+  factory UpdatePropertyOwnerEmailResponse() => create();
+  UpdatePropertyOwnerEmailResponse._() : super();
+  factory UpdatePropertyOwnerEmailResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory UpdatePropertyOwnerEmailResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpdatePropertyOwnerEmailResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'hostelhop.v1'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  UpdatePropertyOwnerEmailResponse clone() => UpdatePropertyOwnerEmailResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  UpdatePropertyOwnerEmailResponse copyWith(void Function(UpdatePropertyOwnerEmailResponse) updates) => super.copyWith((message) => updates(message as UpdatePropertyOwnerEmailResponse)) as UpdatePropertyOwnerEmailResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static UpdatePropertyOwnerEmailResponse create() => UpdatePropertyOwnerEmailResponse._();
+  UpdatePropertyOwnerEmailResponse createEmptyInstance() => create();
+  static $pb.PbList<UpdatePropertyOwnerEmailResponse> createRepeated() => $pb.PbList<UpdatePropertyOwnerEmailResponse>();
+  @$core.pragma('dart2js:noInline')
+  static UpdatePropertyOwnerEmailResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UpdatePropertyOwnerEmailResponse>(create);
+  static UpdatePropertyOwnerEmailResponse? _defaultInstance;
 }
 
 class PropertyOwner extends $pb.GeneratedMessage {

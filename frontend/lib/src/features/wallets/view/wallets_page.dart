@@ -4,24 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hostel_hop_super_admin/main.dart';
-import 'package:hostel_hop_super_admin/src/features/property_owners/cubit/property_owners_cubit.dart';
+import 'package:hostel_hop_super_admin/src/features/wallets/cubit/wallets_cubit.dart';
 import 'package:hostel_hop_super_admin/src/shared/widgets/fade_in_up_card.dart';
 import 'package:hostel_hop_super_admin/src/shared/widgets/password_validator.dart';
 
-class PropertyOwnersPage extends StatelessWidget {
-  const PropertyOwnersPage({super.key});
+class WalletsPage extends StatelessWidget {
+  const WalletsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<PropertyOwnersCubit>(),
-      child: const PropertyOwnersContent(),
+      create: (context) => getIt<WalletsCubit>(),
+      child: const WalletsContent(),
     );
   }
 }
 
-class PropertyOwnersContent extends HookWidget {
-  const PropertyOwnersContent({
+class WalletsContent extends HookWidget {
+  const WalletsContent({
     super.key,
   });
 
@@ -30,39 +30,45 @@ class PropertyOwnersContent extends HookWidget {
     final scrollControler = useScrollController();
     final textController = useTextEditingController();
 
-    return BlocBuilder<PropertyOwnersCubit, PropertyOwnersState>(
+    return BlocBuilder<WalletsCubit, WalletsState>(
       builder: (context, state) {
         switch (state) {
-          case PropertyOwnersLoading():
+          case WalletsLoading():
             return const Center(child: CircularProgressIndicator());
-          case PropertyOwnersLoaded():
-            final owners = state.owners;
+          case WalletsLoaded():
+            final wallets = state.wallets;
 
-            final rows = List.generate(owners.length, (index) {
-              final owner = owners[index];
+            final rows = List.generate(wallets.length, (index) {
+              final wallet = wallets[index];
               return DataRow(cells: [
                 DataCell(Text(
-                  owner.skyflowId,
+                  wallet.backpackerId,
                 )),
                 DataCell(Text(
-                  owner.hostelHopId,
+                  wallet.username,
                 )),
                 DataCell(
                   Text(
-                    owner.email,
+                    wallet.balanceOfNonWithdrawableCredits.toString(),
                   ),
                 ),
                 DataCell(Text(
-                  '${owner.firstName} ${owner.lastName}',
+                  wallet.balanceOfWithdrawableCredits.toString(),
                 )),
-                DataCell(Row(
+                DataCell(Text(
+                  wallet.balanceOfPendingNonWithdrawableCredits.toString(),
+                )),
+                DataCell(Text(
+                  wallet.balanceOfPendingWithdrawableCredits.toString(),
+                )),
+                 DataCell(Row(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextButton(
                       onPressed: () {
-                        final cubit = context.read<PropertyOwnersCubit>();
+                        final cubit = context.read<WalletsCubit>();
                         showDialog(
                           context: context,
                           builder: (context) {
@@ -129,7 +135,7 @@ class PropertyOwnersContent extends HookWidget {
                                               onPressed: () {
                                                 cubit.updatePassword(
                                                   hostelHopId:
-                                                      owner.hostelHopId,
+                                                      wallet.hostelHopId,
                                                   password:
                                                       passwordController.text,
                                                 );
@@ -153,7 +159,7 @@ class PropertyOwnersContent extends HookWidget {
                     const SizedBox(width: 10),
                     TextButton(
                       onPressed: () {
-                        final cubit = context.read<PropertyOwnersCubit>();
+                        final cubit = context.read<WalletsCubit>();
                         showDialog(
                           context: context,
                           builder: (context) {
@@ -214,7 +220,7 @@ class PropertyOwnersContent extends HookWidget {
                                             TextButton(
                                               onPressed: () {
                                                 cubit.updateEmail(
-                                                  skyFlowId: owner.skyflowId,
+                                                  skyFlowId: wallet.skyflowId,
                                                   email: emailController.text,
                                                 );
                                                 Navigator.of(context).pop();
@@ -252,7 +258,7 @@ class PropertyOwnersContent extends HookWidget {
                             const Padding(
                               padding: EdgeInsets.all(20),
                               child: Text(
-                                'Property Owners',
+                                'Property wallets',
                               ),
                             ),
                             Theme(
@@ -264,9 +270,7 @@ class PropertyOwnersContent extends HookWidget {
                                 textController: textController,
                                 onSuffixTap: () {},
                                 onSubmitted: (String value) {
-                                  context
-                                      .read<PropertyOwnersCubit>()
-                                      .search(value);
+                                  context.read<WalletsCubit>().search(value);
                                 },
                               ),
                             ),
@@ -282,22 +286,32 @@ class PropertyOwnersContent extends HookWidget {
                               columns: const [
                                 DataColumn(
                                   label: Text(
-                                    'Skyflow ID',
+                                    'Backpacker ID',
                                   ),
                                 ),
                                 DataColumn(
                                   label: Text(
-                                    'Hostel Hop ID',
+                                    'Username',
                                   ),
                                 ),
                                 DataColumn(
                                   label: Text(
-                                    'Email',
+                                    'Balance of Withdrawable Credits',
                                   ),
                                 ),
                                 DataColumn(
                                   label: Text(
-                                    'Name',
+                                    'Balance of Non-Withdrawable Credits',
+                                  ),
+                                ),
+                                DataColumn(
+                                  label: Text(
+                                    'Balance of Pending Withdrawable Credits',
+                                  ),
+                                ),
+                                DataColumn(
+                                  label: Text(
+                                    'Balance of Pending Non-Withdrawable Credits',
                                   ),
                                 ),
                                 DataColumn(
@@ -321,8 +335,8 @@ class PropertyOwnersContent extends HookWidget {
                     )),
               ),
             );
-          case PropertyOwnersError():
-            return const Center(child: Text('Error loading owners'));
+          case WalletsError():
+            return const Center(child: Text('Error loading wallets'));
         }
       },
     );

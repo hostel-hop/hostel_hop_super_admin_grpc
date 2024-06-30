@@ -25,6 +25,10 @@ class WalletsClient extends $grpc.Client {
       '/hostelhop.v1.Wallets/GetWallet',
       ($2.GetWalletRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $2.GetWalletResponse.fromBuffer(value));
+  static final _$getWallets = $grpc.ClientMethod<$2.GetWalletsRequest, $2.GetWalletsResponse>(
+      '/hostelhop.v1.Wallets/GetWallets',
+      ($2.GetWalletsRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $2.GetWalletsResponse.fromBuffer(value));
 
   WalletsClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -34,6 +38,10 @@ class WalletsClient extends $grpc.Client {
 
   $grpc.ResponseFuture<$2.GetWalletResponse> getWallet($2.GetWalletRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$getWallet, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$2.GetWalletsResponse> getWallets($2.GetWalletsRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$getWallets, request, options: options);
   }
 }
 
@@ -49,11 +57,23 @@ abstract class WalletsServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $2.GetWalletRequest.fromBuffer(value),
         ($2.GetWalletResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$2.GetWalletsRequest, $2.GetWalletsResponse>(
+        'GetWallets',
+        getWallets_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $2.GetWalletsRequest.fromBuffer(value),
+        ($2.GetWalletsResponse value) => value.writeToBuffer()));
   }
 
   $async.Future<$2.GetWalletResponse> getWallet_Pre($grpc.ServiceCall call, $async.Future<$2.GetWalletRequest> request) async {
     return getWallet(call, await request);
   }
 
+  $async.Future<$2.GetWalletsResponse> getWallets_Pre($grpc.ServiceCall call, $async.Future<$2.GetWalletsRequest> request) async {
+    return getWallets(call, await request);
+  }
+
   $async.Future<$2.GetWalletResponse> getWallet($grpc.ServiceCall call, $2.GetWalletRequest request);
+  $async.Future<$2.GetWalletsResponse> getWallets($grpc.ServiceCall call, $2.GetWalletsRequest request);
 }

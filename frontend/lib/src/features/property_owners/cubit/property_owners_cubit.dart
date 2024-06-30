@@ -63,4 +63,25 @@ class PropertyOwnersCubit extends Cubit<PropertyOwnersState> {
       emit(PropertyOwnersError(e.toString()));
     }
   }
+
+    Future<void> updateEmail({
+    required String skyFlowId,
+    required String email,
+  }) async {
+    try {
+      final result = await _repository.updatePropertyOwnerEmail(
+        skyFlowId,
+        email
+      );
+
+      return result.fold(
+        (l) {
+          debugPrint(l.message);
+        },
+        (r) {},
+      );
+    } catch (e) {
+      emit(PropertyOwnersError(e.toString()));
+    }
+  }
 }
