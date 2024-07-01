@@ -11,6 +11,8 @@ typedef SupabaseAuthClient = GoTrueClient;
 
 final GoogleSignInPlatform platform = GoogleSignInPlatform.instance;
 
+const grpcHost = String.fromEnvironment('GRPC_HOST');
+
 @module
 abstract class RegisterModule {
   @LazySingleton()
@@ -28,14 +30,17 @@ abstract class RegisterModule {
   }
 
   GrpcOrGrpcWebClientChannel grpcOrGrpcWebClientChannel() {
-    return GrpcOrGrpcWebClientChannel.toSingleEndpoint(
-      // host: "hostelhop-grpc-dev-td3eu4ynlq-oa.a.run.app",
-      // port: 443,
-      // transportSecure: true,
-      host: "localhost",
-      port: 8080,
-      transportSecure: false,
-    );
+    return grpcHost.isEmpty
+        ? GrpcOrGrpcWebClientChannel.toSingleEndpoint(
+            host: "localhost",
+            port: 8080,
+            transportSecure: false,
+          )
+        : GrpcOrGrpcWebClientChannel.toSingleEndpoint(
+            host: const String.fromEnvironment('GRPC_HOST'),
+            port: 443,
+            transportSecure: true,
+          );
   }
 
   WalletsClient walletsClient(GrpcOrGrpcWebClientChannel channel) {

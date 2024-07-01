@@ -3,7 +3,7 @@ FROM ghcr.io/cirruslabs/flutter:stable as frontend
 WORKDIR /app
 COPY ./client ./
 RUN flutter pub get
-RUN flutter build web --release -t lib/main.dart --dart-define=SUPABASE_URL=https://nrysczdjrimxsojrxvlz.supabase.co --dart-define=SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5yeXNjemRqcmlteHNvanJ4dmx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTcxMDQxOTksImV4cCI6MjAzMjY4MDE5OX0.9mXGvdpLS6gyRCCXdaGlRxNEgjSJ43UOCjzdEqunNhQ --dart-define=GOOGLE_WEB_CLIENT_ID=342608150586-n89ota6s5na8957nu3l0achpt97o7o0n.apps.googleusercontent.com --dart-define=GOOGLE_CLIENT_ID=342608150586-3pks9tcv4dj33ai7hqu6sqdibq49994r.apps.googleusercontent.com
+RUN flutter build web --release -t lib/main.dart --dart-define=SUPABASE_URL=https://nrysczdjrimxsojrxvlz.supabase.co --dart-define=SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5yeXNjemRqcmlteHNvanJ4dmx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTcxMDQxOTksImV4cCI6MjAzMjY4MDE5OX0.9mXGvdpLS6gyRCCXdaGlRxNEgjSJ43UOCjzdEqunNhQ --dart-define=GOOGLE_WEB_CLIENT_ID=342608150586-n89ota6s5na8957nu3l0achpt97o7o0n.apps.googleusercontent.com --dart-define=GOOGLE_CLIENT_ID=342608150586-3pks9tcv4dj33ai7hqu6sqdibq49994r.apps.googleusercontent.com --dart-define=GRPC_HOST=https://hostelhop-super-admin-grpc-dev-td3eu4ynlq-oa.a.run.app
 
 # Specify the Dart SDK base image version using dart:<version> (ex: dart:2.12)
 FROM dart:stable AS backend

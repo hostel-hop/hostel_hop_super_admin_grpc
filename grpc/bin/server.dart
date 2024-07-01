@@ -47,6 +47,8 @@ Future<void> main(List<String> args) async {
           return null;
         },
       ]);
+
   await server.serve(port: 50051);
+
   print('Server listening on port ${server.port}...');
 }

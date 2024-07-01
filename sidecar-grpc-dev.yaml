@@ -32,12 +32,12 @@ spec:
             - name: SKYFLOW_VAULT_ID
               valueFrom:
                 secretKeyRef:
-                  name: SKYFLOW_VAULT_ID
+                  name: VAULT_ID
                   key: latest
             - name: SKYFLOW_VAULT_URL
               valueFrom:
                 secretKeyRef:
-                  name: SKYFLOW_VAULT_URL
+                  name: VAULT_URL
                   key: latest
             - name: DB_DSN
               valueFrom:
