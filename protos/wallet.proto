@@ -5,8 +5,8 @@ package hostelhop.v1;
 service Wallets {
   rpc GetWallet (GetWalletRequest) returns (GetWalletResponse) {}
   rpc GetWallets (GetWalletsRequest) returns (GetWalletsResponse) {}
-  
-
+  rpc UpdateWithdrawableCreditBalance (UpdateWithdrawableCreditBalanceRequest) returns (UpdateWithdrawableCreditBalanceResponse) {}
+  rpc UpdateNonWithdrawableCreditBalance (UpdateNonWithdrawableCreditBalanceRequest) returns (UpdateNonWithdrawableCreditResponse) {}
 }
 message GetWalletsRequest {
   string query = 1;
@@ -22,6 +22,20 @@ message GetWalletRequest {
 message GetWalletResponse {
   Wallet wallet = 1;
 }
+
+
+message UpdateWithdrawableCreditBalanceRequest {
+  int32 added_credits = 1;
+  string backpackerId = 2;
+}
+message UpdateNonWithdrawableCreditBalanceRequest {
+  int32 added_credits = 1;
+  string backpackerId = 2;
+}
+
+message UpdateNonWithdrawableCreditResponse {}
+
+message UpdateWithdrawableCreditBalanceResponse {}
 
 message Wallet {
   string backpacker_id = 1;
