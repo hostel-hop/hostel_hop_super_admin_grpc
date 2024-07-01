@@ -5,6 +5,21 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "hostel_hop_super_admin_frontend (local debug mode)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "cwd": "frontend/client",
+            "args": [
+               "--dart-define=SUPABASE_URL=https://nrysczdjrimxsojrxvlz.supabase.co",
+                "--dart-define=SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5yeXNjemRqcmlteHNvanJ4dmx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTcxMDQxOTksImV4cCI6MjAzMjY4MDE5OX0.9mXGvdpLS6gyRCCXdaGlRxNEgjSJ43UOCjzdEqunNhQ",
+                "--dart-define=GOOGLE_WEB_CLIENT_ID=342608150586-n89ota6s5na8957nu3l0achpt97o7o0n.apps.googleusercontent.com",
+                "--dart-define=GOOGLE_CLIENT_ID=342608150586-3pks9tcv4dj33ai7hqu6sqdibq49994r.apps.googleusercontent.com",
+                "--web-port",
+                "3000"
+            ]
+        },
+        {
             "name": "hostel_hop_super_admin_frontend (debug mode)",
             "request": "launch",
             "type": "dart",
@@ -72,7 +87,7 @@
         {
           "name": "GRPC/Frontend Debug",
           "configurations": [
-            "hostel_hop_super_admin_frontend (debug mode)",
+            "hostel_hop_super_admin_frontend (local debug mode)",
             "hostel_hop_super_admin_grcp (debug mode)"
           ],
           "stopAll": true
