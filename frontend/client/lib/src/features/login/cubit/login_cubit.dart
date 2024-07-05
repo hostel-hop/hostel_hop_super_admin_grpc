@@ -37,8 +37,27 @@ class LoginCubit extends Cubit<LoginState> {
       return userResponse.fold(
         (l) =>
             emit(state.copyWith(status: LoginStatus.error, error: l.message)),
-        (r) {
-          emit(state.copyWith(status: LoginStatus.success));
+        (user) async {
+          final isAuthorizedResult = await _authenticationRepository.authorize(
+            userId: user.id,
+            role: 'super_admin',
+          );
+
+          return isAuthorizedResult.fold(
+              (l) => emit(
+                    state.copyWith(status: LoginStatus.error, error: l.message),
+                  ), (isAuthorized) {
+            if (isAuthorized) {
+              emit(state.copyWith(status: LoginStatus.success));
+            } else {
+              emit(
+                state.copyWith(
+                  status: LoginStatus.error,
+                  error: 'User is not authorized',
+                ),
+              );
+            }
+          });
         },
       );
     } catch (e) {

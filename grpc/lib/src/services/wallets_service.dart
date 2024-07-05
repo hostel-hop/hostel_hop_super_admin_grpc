@@ -28,7 +28,10 @@ class WalletsService extends WalletsServiceBase {
     if (query.isNotEmpty) {
       aggregationBuilder = aggregationBuilder.addStage(
           Match(where.eq('backpacker.username', '$query').map['\$query']));
+    } else {
+      aggregationBuilder = aggregationBuilder.addStage(Limit(20));
     }
+
     aggregationBuilder = aggregationBuilder.addStage(Project({
       'backpacker.username': 1,
       'backpacker._id': 1,
@@ -39,7 +42,6 @@ class WalletsService extends WalletsServiceBase {
     }));
     final pipeline = aggregationBuilder.build();
     final docs = await _walletsCollection.modernAggregate(pipeline).toList();
-    print(docs);
 
     final wallets = docs.map((doc) {
       return Wallet(

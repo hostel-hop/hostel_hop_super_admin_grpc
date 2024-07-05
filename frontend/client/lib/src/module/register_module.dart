@@ -1,6 +1,7 @@
 import 'package:google_sign_in_platform_interface/google_sign_in_platform_interface.dart';
 import 'package:grpc/grpc_or_grpcweb.dart';
 import 'package:hostel_hop_super_admin/src/generated/property_owners.pbgrpc.dart';
+import 'package:hostel_hop_super_admin/src/generated/role.pbgrpc.dart';
 import 'package:hostel_hop_super_admin/src/generated/wallet.pbgrpc.dart';
 import 'package:hostel_hop_super_admin/src/interceptors/auth.dart';
 import 'package:hostel_hop_super_admin/src/interceptors/debug.dart';
@@ -29,6 +30,7 @@ abstract class RegisterModule {
     return platform;
   }
 
+  @singleton
   GrpcOrGrpcWebClientChannel grpcOrGrpcWebClientChannel() {
     return grpcHost.isEmpty
         ? GrpcOrGrpcWebClientChannel.toSingleEndpoint(
@@ -43,6 +45,7 @@ abstract class RegisterModule {
           );
   }
 
+  @LazySingleton()
   WalletsClient walletsClient(GrpcOrGrpcWebClientChannel channel) {
     return WalletsClient(
       channel,
@@ -53,9 +56,21 @@ abstract class RegisterModule {
     );
   }
 
+  @LazySingleton()
   PropertyOwnersClient propertyOwnersClient(
       GrpcOrGrpcWebClientChannel channel) {
     return PropertyOwnersClient(
+      channel,
+      interceptors: [
+        AuthMessageClientInterceptor(),
+        DebugMessageClientInterceptor()
+      ],
+    );
+  }
+
+  @LazySingleton()
+  RoleClient roleClient(GrpcOrGrpcWebClientChannel channel) {
+    return RoleClient(
       channel,
       interceptors: [
         AuthMessageClientInterceptor(),

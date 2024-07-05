@@ -48,17 +48,34 @@
              ]
         },
         {
-            "name": "hostel_hop_super_admin_frontend (release mode)",
+            "name": "hostel_hop_super_admin_frontend (production)",
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart",
             "cwd": "frontend/client",
-            "flutterMode": "release",
             "args": [
-                "--dart-define=SUPABASE_URL=https://nrysczdjrimxsojrxvlz.supabase.co",
-                 "--dart-define=SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5yeXNjemRqcmlteHNvanJ4dmx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTcxMDQxOTksImV4cCI6MjAzMjY4MDE5OX0.9mXGvdpLS6gyRCCXdaGlRxNEgjSJ43UOCjzdEqunNhQ"
+                "--dart-define=SUPABASE_URL=https://nlidrumdsrfmwbuevijs.supabase.co",
+                "--dart-define=SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5saWRydW1kc3JmbXdidWV2aWpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjAxMjAyNDUsImV4cCI6MjAzNTY5NjI0NX0.uHJhzBulp943RdAUo2KI9X0oXgruAfvpG3RpSZklrS0",
+                "--dart-define=GOOGLE_WEB_CLIENT_ID=930572631553-9p9u1hml975qspg2grbdgj7svrmb59mr.apps.googleusercontent.com",
+                "--dart-define=GRPC_HOST=hostelhop-super-admin-grpc-a5buyscvha-oa.a.run.app",
+                "--web-port",
+                "5000"
              ]
         },
+        {
+          "name": "hostel_hop_super_admin_frontend (production local)",
+          "request": "launch",
+          "type": "dart",
+          "program": "lib/main.dart",
+          "cwd": "frontend/client",
+          "args": [
+              "--dart-define=SUPABASE_URL=https://nlidrumdsrfmwbuevijs.supabase.co",
+              "--dart-define=SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5saWRydW1kc3JmbXdidWV2aWpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjAxMjAyNDUsImV4cCI6MjAzNTY5NjI0NX0.uHJhzBulp943RdAUo2KI9X0oXgruAfvpG3RpSZklrS0",
+              "--dart-define=GOOGLE_WEB_CLIENT_ID=930572631553-9p9u1hml975qspg2grbdgj7svrmb59mr.apps.googleusercontent.com",
+              "--web-port",
+              "5000"
+           ]
+      },
         {
             "name": "hostel_hop_super_admin_grcp (debug mode)",
             "request": "launch",
@@ -75,20 +92,27 @@
             "flutterMode": "profile"
         },
         {
-            "name": "hostel_hop_super_admin_grcp (release mode)",
+            "name": "hostel_hop_super_admin_grcp (production)",
             "request": "launch",
             "type": "dart",
             "program": "bin/server.dart",
             "cwd": "grpc",
-            "flutterMode": "release"
         },
     ],
     "compounds": [
         {
-          "name": "GRPC/Frontend Debug",
+          "name": "GRPC/Frontend Local Debug",
           "configurations": [
             "hostel_hop_super_admin_frontend (local debug mode)",
             "hostel_hop_super_admin_grcp (debug mode)"
+          ],
+          "stopAll": true
+        },
+        {
+          "name": "GRPC/Frontend Local Production",
+          "configurations": [
+            "hostel_hop_super_admin_frontend (production local)",
+            "hostel_hop_super_admin_grcp (production)"
           ],
           "stopAll": true
         }
