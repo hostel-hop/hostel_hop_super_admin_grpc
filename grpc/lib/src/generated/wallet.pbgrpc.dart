@@ -29,6 +29,14 @@ class WalletsClient extends $grpc.Client {
       '/hostelhop.v1.Wallets/GetWallets',
       ($2.GetWalletsRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $2.GetWalletsResponse.fromBuffer(value));
+  static final _$updateWithdrawableCreditBalance = $grpc.ClientMethod<$2.UpdateWithdrawableCreditBalanceRequest, $2.UpdateWithdrawableCreditBalanceResponse>(
+      '/hostelhop.v1.Wallets/UpdateWithdrawableCreditBalance',
+      ($2.UpdateWithdrawableCreditBalanceRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $2.UpdateWithdrawableCreditBalanceResponse.fromBuffer(value));
+  static final _$updateNonWithdrawableCreditBalance = $grpc.ClientMethod<$2.UpdateNonWithdrawableCreditBalanceRequest, $2.UpdateNonWithdrawableCreditResponse>(
+      '/hostelhop.v1.Wallets/UpdateNonWithdrawableCreditBalance',
+      ($2.UpdateNonWithdrawableCreditBalanceRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $2.UpdateNonWithdrawableCreditResponse.fromBuffer(value));
 
   WalletsClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -42,6 +50,14 @@ class WalletsClient extends $grpc.Client {
 
   $grpc.ResponseFuture<$2.GetWalletsResponse> getWallets($2.GetWalletsRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$getWallets, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$2.UpdateWithdrawableCreditBalanceResponse> updateWithdrawableCreditBalance($2.UpdateWithdrawableCreditBalanceRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$updateWithdrawableCreditBalance, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$2.UpdateNonWithdrawableCreditResponse> updateNonWithdrawableCreditBalance($2.UpdateNonWithdrawableCreditBalanceRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$updateNonWithdrawableCreditBalance, request, options: options);
   }
 }
 
@@ -64,6 +80,20 @@ abstract class WalletsServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $2.GetWalletsRequest.fromBuffer(value),
         ($2.GetWalletsResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$2.UpdateWithdrawableCreditBalanceRequest, $2.UpdateWithdrawableCreditBalanceResponse>(
+        'UpdateWithdrawableCreditBalance',
+        updateWithdrawableCreditBalance_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $2.UpdateWithdrawableCreditBalanceRequest.fromBuffer(value),
+        ($2.UpdateWithdrawableCreditBalanceResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$2.UpdateNonWithdrawableCreditBalanceRequest, $2.UpdateNonWithdrawableCreditResponse>(
+        'UpdateNonWithdrawableCreditBalance',
+        updateNonWithdrawableCreditBalance_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $2.UpdateNonWithdrawableCreditBalanceRequest.fromBuffer(value),
+        ($2.UpdateNonWithdrawableCreditResponse value) => value.writeToBuffer()));
   }
 
   $async.Future<$2.GetWalletResponse> getWallet_Pre($grpc.ServiceCall call, $async.Future<$2.GetWalletRequest> request) async {
@@ -74,6 +104,16 @@ abstract class WalletsServiceBase extends $grpc.Service {
     return getWallets(call, await request);
   }
 
+  $async.Future<$2.UpdateWithdrawableCreditBalanceResponse> updateWithdrawableCreditBalance_Pre($grpc.ServiceCall call, $async.Future<$2.UpdateWithdrawableCreditBalanceRequest> request) async {
+    return updateWithdrawableCreditBalance(call, await request);
+  }
+
+  $async.Future<$2.UpdateNonWithdrawableCreditResponse> updateNonWithdrawableCreditBalance_Pre($grpc.ServiceCall call, $async.Future<$2.UpdateNonWithdrawableCreditBalanceRequest> request) async {
+    return updateNonWithdrawableCreditBalance(call, await request);
+  }
+
   $async.Future<$2.GetWalletResponse> getWallet($grpc.ServiceCall call, $2.GetWalletRequest request);
   $async.Future<$2.GetWalletsResponse> getWallets($grpc.ServiceCall call, $2.GetWalletsRequest request);
+  $async.Future<$2.UpdateWithdrawableCreditBalanceResponse> updateWithdrawableCreditBalance($grpc.ServiceCall call, $2.UpdateWithdrawableCreditBalanceRequest request);
+  $async.Future<$2.UpdateNonWithdrawableCreditResponse> updateNonWithdrawableCreditBalance($grpc.ServiceCall call, $2.UpdateNonWithdrawableCreditBalanceRequest request);
 }

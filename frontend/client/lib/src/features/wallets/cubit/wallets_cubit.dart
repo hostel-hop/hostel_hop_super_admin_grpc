@@ -42,4 +42,36 @@ class WalletsCubit extends Cubit<WalletsState> {
       emit(WalletsError(e.toString()));
     }
   }
+
+  Future<void> updateCredits(
+      {required int nonWithdrawableCredits,
+      required int withdrawableCredits,
+      required String backpackerId}) async {
+    try {
+      late final withdrawableResult;
+      late final nonWithdrawableResult;
+
+      if (withdrawableCredits != 0 && nonWithdrawableCredits != 0) {
+        withdrawableResult = await _repository.updateWithdrawableCredits(
+            withdrawableCredits: withdrawableCredits,
+            backpackerId: backpackerId);
+        nonWithdrawableResult = await _repository.updateNonWithdrawableCredits(
+            nonWithdrawableCredits: nonWithdrawableCredits,
+            backpackerId: backpackerId);
+      } else if (withdrawableCredits != 0 && nonWithdrawableCredits == 0) {
+        withdrawableResult = await _repository.updateWithdrawableCredits(
+            withdrawableCredits: withdrawableCredits,
+            backpackerId: backpackerId);
+      } else if (withdrawableCredits == 0 && nonWithdrawableCredits != 0) {
+        nonWithdrawableResult = await _repository.updateNonWithdrawableCredits(
+            nonWithdrawableCredits: nonWithdrawableCredits,
+            backpackerId: backpackerId);
+      }
+      
+      
+
+    } catch (e) {
+      emit(WalletsError(e.toString()));
+    }
+  }
 }

@@ -66,4 +66,53 @@ class WalletsService extends WalletsServiceBase {
 
     return Future.value(GetWalletResponse());
   }
+
+  @override
+  Future<UpdateWithdrawableCreditBalanceResponse> updateWithdrawableCreditBalance(
+      ServiceCall call, UpdateWithdrawableCreditBalanceRequest request) async {
+
+        try {
+
+    final backpackerId = request.backpackerId;
+
+    final update = await _walletsCollection.updateOne(
+      where.eq('backpacker', ObjectId.fromHexString(backpackerId)),
+      modify.inc('balanceNoOfWithdrawableCredits', request.addedCredits),
+    );
+
+    if (update.isFailure) {
+      return Future.error('Failed to update balance');
+    }
+
+    return UpdateWithdrawableCreditBalanceResponse();
+      } catch (e) {
+      return Future.error(e);
+    }
+
+  }
+
+  @override 
+  Future<UpdateNonWithdrawableCreditResponse> updateNonWithdrawableCreditBalance(
+      ServiceCall call, UpdateNonWithdrawableCreditBalanceRequest request) async {
+
+        try {
+
+    final backpackerId = request.backpackerId;
+
+    final update = await _walletsCollection.updateOne(
+      where.eq('backpacker', ObjectId.fromHexString(backpackerId)),
+      modify.inc('balanceNoOfNonWithdrawableCredits', request.addedCredits),
+    );
+
+    if (update.isFailure) {
+      return Future.error('Failed to update balance');
+    }
+
+    return UpdateNonWithdrawableCreditResponse();
+      } catch (e) {
+      return Future.error(e);
+    }
+
+  }
+
 }

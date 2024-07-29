@@ -63,6 +63,54 @@ final $typed_data.Uint8List getWalletResponseDescriptor = $convert.base64Decode(
     'ChFHZXRXYWxsZXRSZXNwb25zZRIsCgZ3YWxsZXQYASABKAsyFC5ob3N0ZWxob3AudjEuV2FsbG'
     'V0UgZ3YWxsZXQ=');
 
+@$core.Deprecated('Use updateWithdrawableCreditBalanceRequestDescriptor instead')
+const UpdateWithdrawableCreditBalanceRequest$json = {
+  '1': 'UpdateWithdrawableCreditBalanceRequest',
+  '2': [
+    {'1': 'added_credits', '3': 1, '4': 1, '5': 5, '10': 'addedCredits'},
+    {'1': 'backpackerId', '3': 2, '4': 1, '5': 9, '10': 'backpackerId'},
+  ],
+};
+
+/// Descriptor for `UpdateWithdrawableCreditBalanceRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List updateWithdrawableCreditBalanceRequestDescriptor = $convert.base64Decode(
+    'CiZVcGRhdGVXaXRoZHJhd2FibGVDcmVkaXRCYWxhbmNlUmVxdWVzdBIjCg1hZGRlZF9jcmVkaX'
+    'RzGAEgASgFUgxhZGRlZENyZWRpdHMSIgoMYmFja3BhY2tlcklkGAIgASgJUgxiYWNrcGFja2Vy'
+    'SWQ=');
+
+@$core.Deprecated('Use updateNonWithdrawableCreditBalanceRequestDescriptor instead')
+const UpdateNonWithdrawableCreditBalanceRequest$json = {
+  '1': 'UpdateNonWithdrawableCreditBalanceRequest',
+  '2': [
+    {'1': 'added_credits', '3': 1, '4': 1, '5': 5, '10': 'addedCredits'},
+    {'1': 'backpackerId', '3': 2, '4': 1, '5': 9, '10': 'backpackerId'},
+  ],
+};
+
+/// Descriptor for `UpdateNonWithdrawableCreditBalanceRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List updateNonWithdrawableCreditBalanceRequestDescriptor = $convert.base64Decode(
+    'CilVcGRhdGVOb25XaXRoZHJhd2FibGVDcmVkaXRCYWxhbmNlUmVxdWVzdBIjCg1hZGRlZF9jcm'
+    'VkaXRzGAEgASgFUgxhZGRlZENyZWRpdHMSIgoMYmFja3BhY2tlcklkGAIgASgJUgxiYWNrcGFj'
+    'a2VySWQ=');
+
+@$core.Deprecated('Use updateNonWithdrawableCreditResponseDescriptor instead')
+const UpdateNonWithdrawableCreditResponse$json = {
+  '1': 'UpdateNonWithdrawableCreditResponse',
+};
+
+/// Descriptor for `UpdateNonWithdrawableCreditResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List updateNonWithdrawableCreditResponseDescriptor = $convert.base64Decode(
+    'CiNVcGRhdGVOb25XaXRoZHJhd2FibGVDcmVkaXRSZXNwb25zZQ==');
+
+@$core.Deprecated('Use updateWithdrawableCreditBalanceResponseDescriptor instead')
+const UpdateWithdrawableCreditBalanceResponse$json = {
+  '1': 'UpdateWithdrawableCreditBalanceResponse',
+};
+
+/// Descriptor for `UpdateWithdrawableCreditBalanceResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List updateWithdrawableCreditBalanceResponseDescriptor = $convert.base64Decode(
+    'CidVcGRhdGVXaXRoZHJhd2FibGVDcmVkaXRCYWxhbmNlUmVzcG9uc2U=');
+
 @$core.Deprecated('Use walletDescriptor instead')
 const Wallet$json = {
   '1': 'Wallet',

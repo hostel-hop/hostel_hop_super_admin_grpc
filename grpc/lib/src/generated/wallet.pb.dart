@@ -209,6 +209,198 @@ class GetWalletResponse extends $pb.GeneratedMessage {
   Wallet ensureWallet() => $_ensure(0);
 }
 
+class UpdateWithdrawableCreditBalanceRequest extends $pb.GeneratedMessage {
+  factory UpdateWithdrawableCreditBalanceRequest({
+    $core.int? addedCredits,
+    $core.String? backpackerId,
+  }) {
+    final $result = create();
+    if (addedCredits != null) {
+      $result.addedCredits = addedCredits;
+    }
+    if (backpackerId != null) {
+      $result.backpackerId = backpackerId;
+    }
+    return $result;
+  }
+  UpdateWithdrawableCreditBalanceRequest._() : super();
+  factory UpdateWithdrawableCreditBalanceRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory UpdateWithdrawableCreditBalanceRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpdateWithdrawableCreditBalanceRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'hostelhop.v1'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'addedCredits', $pb.PbFieldType.O3)
+    ..aOS(2, _omitFieldNames ? '' : 'backpackerId', protoName: 'backpackerId')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  UpdateWithdrawableCreditBalanceRequest clone() => UpdateWithdrawableCreditBalanceRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  UpdateWithdrawableCreditBalanceRequest copyWith(void Function(UpdateWithdrawableCreditBalanceRequest) updates) => super.copyWith((message) => updates(message as UpdateWithdrawableCreditBalanceRequest)) as UpdateWithdrawableCreditBalanceRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static UpdateWithdrawableCreditBalanceRequest create() => UpdateWithdrawableCreditBalanceRequest._();
+  UpdateWithdrawableCreditBalanceRequest createEmptyInstance() => create();
+  static $pb.PbList<UpdateWithdrawableCreditBalanceRequest> createRepeated() => $pb.PbList<UpdateWithdrawableCreditBalanceRequest>();
+  @$core.pragma('dart2js:noInline')
+  static UpdateWithdrawableCreditBalanceRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UpdateWithdrawableCreditBalanceRequest>(create);
+  static UpdateWithdrawableCreditBalanceRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get addedCredits => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set addedCredits($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasAddedCredits() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearAddedCredits() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get backpackerId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set backpackerId($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasBackpackerId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearBackpackerId() => clearField(2);
+}
+
+class UpdateNonWithdrawableCreditBalanceRequest extends $pb.GeneratedMessage {
+  factory UpdateNonWithdrawableCreditBalanceRequest({
+    $core.int? addedCredits,
+    $core.String? backpackerId,
+  }) {
+    final $result = create();
+    if (addedCredits != null) {
+      $result.addedCredits = addedCredits;
+    }
+    if (backpackerId != null) {
+      $result.backpackerId = backpackerId;
+    }
+    return $result;
+  }
+  UpdateNonWithdrawableCreditBalanceRequest._() : super();
+  factory UpdateNonWithdrawableCreditBalanceRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory UpdateNonWithdrawableCreditBalanceRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpdateNonWithdrawableCreditBalanceRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'hostelhop.v1'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'addedCredits', $pb.PbFieldType.O3)
+    ..aOS(2, _omitFieldNames ? '' : 'backpackerId', protoName: 'backpackerId')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  UpdateNonWithdrawableCreditBalanceRequest clone() => UpdateNonWithdrawableCreditBalanceRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  UpdateNonWithdrawableCreditBalanceRequest copyWith(void Function(UpdateNonWithdrawableCreditBalanceRequest) updates) => super.copyWith((message) => updates(message as UpdateNonWithdrawableCreditBalanceRequest)) as UpdateNonWithdrawableCreditBalanceRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static UpdateNonWithdrawableCreditBalanceRequest create() => UpdateNonWithdrawableCreditBalanceRequest._();
+  UpdateNonWithdrawableCreditBalanceRequest createEmptyInstance() => create();
+  static $pb.PbList<UpdateNonWithdrawableCreditBalanceRequest> createRepeated() => $pb.PbList<UpdateNonWithdrawableCreditBalanceRequest>();
+  @$core.pragma('dart2js:noInline')
+  static UpdateNonWithdrawableCreditBalanceRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UpdateNonWithdrawableCreditBalanceRequest>(create);
+  static UpdateNonWithdrawableCreditBalanceRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get addedCredits => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set addedCredits($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasAddedCredits() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearAddedCredits() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get backpackerId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set backpackerId($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasBackpackerId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearBackpackerId() => clearField(2);
+}
+
+class UpdateNonWithdrawableCreditResponse extends $pb.GeneratedMessage {
+  factory UpdateNonWithdrawableCreditResponse() => create();
+  UpdateNonWithdrawableCreditResponse._() : super();
+  factory UpdateNonWithdrawableCreditResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory UpdateNonWithdrawableCreditResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpdateNonWithdrawableCreditResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'hostelhop.v1'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  UpdateNonWithdrawableCreditResponse clone() => UpdateNonWithdrawableCreditResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  UpdateNonWithdrawableCreditResponse copyWith(void Function(UpdateNonWithdrawableCreditResponse) updates) => super.copyWith((message) => updates(message as UpdateNonWithdrawableCreditResponse)) as UpdateNonWithdrawableCreditResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static UpdateNonWithdrawableCreditResponse create() => UpdateNonWithdrawableCreditResponse._();
+  UpdateNonWithdrawableCreditResponse createEmptyInstance() => create();
+  static $pb.PbList<UpdateNonWithdrawableCreditResponse> createRepeated() => $pb.PbList<UpdateNonWithdrawableCreditResponse>();
+  @$core.pragma('dart2js:noInline')
+  static UpdateNonWithdrawableCreditResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UpdateNonWithdrawableCreditResponse>(create);
+  static UpdateNonWithdrawableCreditResponse? _defaultInstance;
+}
+
+class UpdateWithdrawableCreditBalanceResponse extends $pb.GeneratedMessage {
+  factory UpdateWithdrawableCreditBalanceResponse() => create();
+  UpdateWithdrawableCreditBalanceResponse._() : super();
+  factory UpdateWithdrawableCreditBalanceResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory UpdateWithdrawableCreditBalanceResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpdateWithdrawableCreditBalanceResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'hostelhop.v1'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  UpdateWithdrawableCreditBalanceResponse clone() => UpdateWithdrawableCreditBalanceResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  UpdateWithdrawableCreditBalanceResponse copyWith(void Function(UpdateWithdrawableCreditBalanceResponse) updates) => super.copyWith((message) => updates(message as UpdateWithdrawableCreditBalanceResponse)) as UpdateWithdrawableCreditBalanceResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static UpdateWithdrawableCreditBalanceResponse create() => UpdateWithdrawableCreditBalanceResponse._();
+  UpdateWithdrawableCreditBalanceResponse createEmptyInstance() => create();
+  static $pb.PbList<UpdateWithdrawableCreditBalanceResponse> createRepeated() => $pb.PbList<UpdateWithdrawableCreditBalanceResponse>();
+  @$core.pragma('dart2js:noInline')
+  static UpdateWithdrawableCreditBalanceResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UpdateWithdrawableCreditBalanceResponse>(create);
+  static UpdateWithdrawableCreditBalanceResponse? _defaultInstance;
+}
+
 class Wallet extends $pb.GeneratedMessage {
   factory Wallet({
     $core.String? backpackerId,

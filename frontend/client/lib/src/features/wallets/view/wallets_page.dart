@@ -73,21 +73,36 @@ class WalletsContent extends HookWidget {
                           context: context,
                           builder: (context) {
                             return HookBuilder(builder: (context) {
-                              final passwordController =
+                              final withdrawableCreditController =
+                                  useTextEditingController();
+                              final nonWithdrawableCreditController =
                                   useTextEditingController();
 
-                              final passwordValue = useState('');
+                              final withdrawableCreditValue = useState('');
+                              final nonWithdrawableCreditValue = useState('');
 
                               useEffect(
                                 () {
-                                  passwordController.addListener(() {
-                                    passwordValue.value =
-                                        passwordController.text;
+                                  withdrawableCreditController.addListener(() {
+                                    withdrawableCreditValue.value =
+                                        withdrawableCreditController.text;
                                   });
 
-                                  return () => passwordController.dispose();
+                                  return () => withdrawableCreditController.dispose();
                                 },
-                                [passwordController],
+                                [withdrawableCreditController],
+                              );
+
+                               useEffect(
+                                () {
+                                  nonWithdrawableCreditController.addListener(() {
+                                    nonWithdrawableCreditValue.value =
+                                        nonWithdrawableCreditController.text;
+                                  });
+
+                                  return () => nonWithdrawableCreditController.dispose();
+                                },
+                                [nonWithdrawableCreditController],
                               );
 
                               return Dialog(
@@ -98,22 +113,35 @@ class WalletsContent extends HookWidget {
                                     children: [
                                       const SizedBox(height: 20),
                                       Text(
-                                        'Update Password',
+                                        'Update Withdrawable Credits',
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleLarge,
                                       ),
                                       const SizedBox(height: 20),
-                                      PasswordValidator(
-                                        password: passwordValue.value,
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: TextField(
+                                          controller: withdrawableCreditController,
+                                          decoration: const InputDecoration(
+                                            labelText: 'Enter Amount',
+                                          ),
+                                        ),
+                                      ),
+                                       const SizedBox(height: 20),
+                                      Text(
+                                        'Update NonWithdrawable Credits',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge,
                                       ),
                                       const SizedBox(height: 20),
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: TextField(
-                                          controller: passwordController,
+                                          controller: nonWithdrawableCreditController,
                                           decoration: const InputDecoration(
-                                            labelText: 'New Password',
+                                            labelText: 'Enter Amount',
                                           ),
                                         ),
                                       ),
@@ -132,85 +160,9 @@ class WalletsContent extends HookWidget {
                                             ),
                                             const SizedBox(width: 10),
                                             TextButton(
-                                              onPressed: () {},
-                                              child: const Text('Update'),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            });
-                          },
-                        );
-                      },
-                      child: const Text('Update Password'),
-                    ),
-                    const SizedBox(width: 10),
-                    TextButton(
-                      onPressed: () {
-                        final cubit = context.read<WalletsCubit>();
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return HookBuilder(builder: (context) {
-                              final emailController =
-                                  useTextEditingController();
-
-                              final emailValue = useState('');
-
-                              useEffect(
-                                () {
-                                  emailController.addListener(() {
-                                    emailValue.value = emailController.text;
-                                  });
-
-                                  return () => emailController.dispose();
-                                },
-                                [emailController],
-                              );
-
-                              return Dialog(
-                                child: SizedBox(
-                                  width: 400,
-                                  height: 400,
-                                  child: Column(
-                                    children: [
-                                      const SizedBox(height: 20),
-                                      Text(
-                                        'Update Email',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleLarge,
-                                      ),
-                                      const SizedBox(height: 20),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: TextField(
-                                          controller: emailController,
-                                          decoration: const InputDecoration(
-                                            labelText: 'New Email',
-                                          ),
-                                        ),
-                                      ),
-                                      const Spacer(),
-                                      Padding(
-                                        padding: const EdgeInsets.all(20),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            TextButton(
                                               onPressed: () {
-                                                Navigator.of(context).pop();
+                                                
                                               },
-                                              child: const Text('Cancel'),
-                                            ),
-                                            const SizedBox(width: 10),
-                                            TextButton(
-                                              onPressed: () {},
                                               child: const Text('Update'),
                                             ),
                                           ],
@@ -224,8 +176,9 @@ class WalletsContent extends HookWidget {
                           },
                         );
                       },
-                      child: const Text('Update Email'),
+                      child: const Text('Update Credits'),
                     ),
+                   
                   ],
                 )),
               ]);

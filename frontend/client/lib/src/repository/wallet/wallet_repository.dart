@@ -23,4 +23,30 @@ class WalletRepository implements IWalletRepository {
       return left(ServerFailure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, UpdateNonWithdrawableCreditResponse>> updateNonWithdrawableCredits(
+      {required int nonWithdrawableCredits, required String backpackerId}) async {
+    try {
+      final response = await _client.updateNonWithdrawableCreditBalance(UpdateNonWithdrawableCreditBalanceRequest(addedCredits:nonWithdrawableCredits, backpackerId: backpackerId));
+       
+
+      return right(response);
+    } catch (e) {
+      return left(ServerFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UpdateWithdrawableCreditBalanceResponse>> updateWithdrawableCredits(
+      {required int withdrawableCredits, required String backpackerId}) async {
+    try {
+      final response = await _client.updateWithdrawableCreditBalance(UpdateWithdrawableCreditBalanceRequest(addedCredits: withdrawableCredits, backpackerId: backpackerId));
+       
+
+      return right(response);
+    } catch (e) {
+      return left(ServerFailure(message: e.toString()));
+    }
+  }
 }
