@@ -2,21 +2,21 @@ apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   annotations:
-  name: hostelhop-super-admin-grpc-dev
+  name: hostelhop-super-admin-grpc
   labels:
     cloud.googleapis.com/location: "europe-west6"
 spec:
   template:
     metadata:
       annotations:
-        run.googleapis.com/vpc-access-connector: projects/hostel-hop-dev/locations/europe-west6/connectors/mongo-connector
+        run.googleapis.com/vpc-access-connector: projects/norse-block-326612/locations/europe-west6/connectors/atlas-connector
         run.googleapis.com/vpc-access-egress: private-ranges-only
     spec:
       containers:
-        - image: "gcr.io/hostel-hop-dev/super-admin-grpc-envoy"
+        - image: "gcr.io/norse-block-326612/super-admin-grpc-envoy"
           ports:
             - containerPort: 8080
-        - image: "gcr.io/hostel-hop-dev/super-admin-grpc-backend"
+        - image: "gcr.io/norse-block-326612/super-admin-grpc-backend"
           env:
             - name: SUPABASE_KEY
               valueFrom:

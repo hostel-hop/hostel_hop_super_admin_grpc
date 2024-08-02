@@ -8,6 +8,7 @@ service Wallets {
   rpc UpdateWithdrawableCreditBalance (UpdateWithdrawableCreditBalanceRequest) returns (UpdateWithdrawableCreditBalanceResponse) {}
   rpc UpdateNonWithdrawableCreditBalance (UpdateNonWithdrawableCreditBalanceRequest) returns (UpdateNonWithdrawableCreditResponse) {}
 }
+
 message GetWalletsRequest {
   string query = 1;
 }

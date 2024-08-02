@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package hostelhop.v1;
+
+service Role {
+  rpc UpdateUserRole (UpdateUserRoleRequest) returns (UpdateUserRoleResponse) {}
+  rpc Authorize (AuthorizeRequest) returns (AuthorizeResponse) {}
+}
+
+message UpdateUserRoleRequest {
+    string userId = 1;
+    string role = 2;
+}
+
+message UpdateUserRoleResponse {}
+
+message AuthorizeRequest {
+    string userId = 1;
+    string role = 2;
+}
+
+message AuthorizeResponse {
+    bool authorized = 1;
+}
+

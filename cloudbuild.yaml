@@ -8,7 +8,7 @@ steps:
       [
         "build",
         "-t",
-        "gcr.io/hostel-hop-dev/super-admin-frontend-dev",
+        "gcr.io/norse-block-326612/super-admin-frontend",
         "--build-arg=SUPABASE_URL=$_SUPABASE_URL",
         "--build-arg=SUPABASE_ANON_KEY=$_SUPABASE_ANON_KEY",
         "--build-arg=GOOGLE_WEB_CLIENT_ID=$_GOOGLE_WEB_CLIENT_ID",
@@ -17,16 +17,16 @@ steps:
       ]
   - id: "push-super-admin-frontend"
     name: "gcr.io/cloud-builders/docker"
-    args: ["push", "gcr.io/hostel-hop-dev/super-admin-frontend-dev"]
+    args: ["push", "gcr.io/norse-block-326612/super-admin-frontend"]
   - id: "deploy-super-admin-frontend"
     name: "gcr.io/cloud-builders/gcloud"
     args:
       [
         "run",
         "deploy",
-        "super-admin-frontend-dev",
+        "super-admin-frontend",
         "--image",
-        "gcr.io/hostel-hop-dev/super-admin-frontend-dev",
+        "gcr.io/norse-block-326612/super-admin-frontend",
         "--region",
         "europe-west6",
         "--platform",
@@ -41,23 +41,11 @@ steps:
     waitFor: ["build-super-admin-frontend"]
   - id: "build-super-admin-grpc-backend"
     name: "gcr.io/cloud-builders/gcloud"
-    args:
-      [
-        "builds",
-        "submit",
-        "--tag",
-        "gcr.io/hostel-hop-dev/super-admin-grpc-backend",
-      ]
+    args: ["builds", "submit", "--tag", "gcr.io/norse-block-326612/super-admin-grpc-backend"]
     dir: "grpc"
   - id: "build-super-admin-grpc-envoy"
     name: "gcr.io/cloud-builders/gcloud"
-    args:
-      [
-        "builds",
-        "submit",
-        "--tag",
-        "gcr.io/hostel-hop-dev/super-admin-grpc-envoy",
-      ]
+    args: ["builds", "submit", "--tag", "gcr.io/norse-block-326612/super-admin-grpc-envoy"]
     dir: "envoy"
   - id: "deploy-sidecar-grpc"
     name: "gcr.io/cloud-builders/gcloud"
@@ -66,14 +54,16 @@ steps:
       - "run"
       - "services"
       - "replace"
-      - "sidecar-grpc-dev.yaml"
+      - "sidecar-grpc.yaml"
     dir: "."
     waitFor: ["build-super-admin-grpc-backend", "build-super-admin-grpc-envoy"]
 
-substitutions:
-  _SUPABASE_URL: https://nrysczdjrimxsojrxvlz.supabase.co
-  _SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5yeXNjemRqcmlteHNvanJ4dmx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTcxMDQxOTksImV4cCI6MjAzMjY4MDE5OX0.9mXGvdpLS6gyRCCXdaGlRxNEgjSJ43UOCjzdEqunNhQ
-  _GOOGLE_WEB_CLIENT_ID: 342608150586-n89ota6s5na8957nu3l0achpt97o7o0n.apps.googleusercontent.com
-  _GRPC_HOST: hostelhop-super-admin-grpc-dev-td3eu4ynlq-oa.a.run.app
 
-serviceAccount: projects/hostel-hop-dev/serviceAccounts/342608150586-compute@developer.gserviceaccount.com
+substitutions:
+  _SUPABASE_URL: https://nlidrumdsrfmwbuevijs.supabase.co
+  _SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5saWRydW1kc3JmbXdidWV2aWpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjAxMjAyNDUsImV4cCI6MjAzNTY5NjI0NX0.uHJhzBulp943RdAUo2KI9X0oXgruAfvpG3RpSZklrS0
+  _GOOGLE_WEB_CLIENT_ID: 930572631553-9p9u1hml975qspg2grbdgj7svrmb59mr.apps.googleusercontent.com
+  _GRPC_HOST: hostelhop-super-admin-grpc-a5buyscvha-oa.a.run.app
+
+  
+serviceAccount: projects/norse-block-326612/serviceAccounts/930572631553-compute@developer.gserviceaccount.com

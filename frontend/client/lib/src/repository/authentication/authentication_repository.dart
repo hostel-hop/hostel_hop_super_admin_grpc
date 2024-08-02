@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:hostel_hop_super_admin/src/generated/role.pbgrpc.dart';
 import 'package:hostel_hop_super_admin/src/module/register_module.dart';
 import 'package:hostel_hop_super_admin/src/repository/authentication/i_authentication_repository.dart';
 import 'package:hostel_hop_super_admin/src/shared/util/failure.dart';
@@ -9,9 +10,13 @@ import 'package:supabase_flutter/supabase_flutter.dart'
 @named
 @LazySingleton(as: IAuthenticationRepository)
 class AuthenticationRepository implements IAuthenticationRepository {
-  AuthenticationRepository(this._supabaseAuthClient);
+  AuthenticationRepository(
+    this._supabaseAuthClient,
+    this._roleClient,
+  );
 
   final SupabaseAuthClient _supabaseAuthClient;
+  final RoleClient _roleClient;
 
   @override
   Future<Either<AuthenticatedFailure, User>> signInWithGoogle(
@@ -31,13 +36,7 @@ class AuthenticationRepository implements IAuthenticationRepository {
         );
       }
 
-      if (user.userMetadata!['role'] != 'hostel_hop_super_admin') {
-        return left(
-          const AuthenticatedFailure(message: 'User is not a super admin'),
-        );
-      }
-
-      return right(authResponse.user!);
+      return right(user);
     } catch (e) {
       return left(
         AuthenticatedFailure(message: e.toString()),
@@ -62,4 +61,22 @@ class AuthenticationRepository implements IAuthenticationRepository {
       _supabaseAuthClient.onAuthStateChange.map(
         (event) => event.session?.user,
       );
+
+  @override
+  Future<Either<AuthenticatedFailure, bool>> authorize(
+      {required String userId, required String role}) async {
+    try {
+      final response = await _roleClient.authorize(
+        AuthorizeRequest()
+          ..userId = userId
+          ..role = role,
+      );
+
+      return right(response.authorized);
+    } catch (e) {
+      return left(
+        AuthenticatedFailure(message: e.toString()),
+      );
+    }
+  }
 }

@@ -1,9 +1,20 @@
 FROM ghcr.io/cirruslabs/flutter:stable as frontend
 
+
+# Define environment variables
+ARG SUPABASE_URL
+ARG SUPABASE_ANON_KEY
+ARG GOOGLE_WEB_CLIENT_ID
+ARG GRPC_HOST
+
 WORKDIR /app
 COPY ./client ./
 RUN flutter pub get
-RUN flutter build web --release -t lib/main.dart --dart-define=SUPABASE_URL=https://nrysczdjrimxsojrxvlz.supabase.co --dart-define=SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5yeXNjemRqcmlteHNvanJ4dmx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTcxMDQxOTksImV4cCI6MjAzMjY4MDE5OX0.9mXGvdpLS6gyRCCXdaGlRxNEgjSJ43UOCjzdEqunNhQ --dart-define=GOOGLE_WEB_CLIENT_ID=342608150586-n89ota6s5na8957nu3l0achpt97o7o0n.apps.googleusercontent.com --dart-define=GOOGLE_CLIENT_ID=342608150586-3pks9tcv4dj33ai7hqu6sqdibq49994r.apps.googleusercontent.com
+RUN flutter build web --release -t lib/main.dart \
+    --dart-define=SUPABASE_URL=$SUPABASE_URL \
+    --dart-define=SUPABASE_ANON_KEY=$SUPABASE_ANON_KEY \
+    --dart-define=GOOGLE_WEB_CLIENT_ID=$GOOGLE_WEB_CLIENT_ID \
+    --dart-define=GRPC_HOST=$GRPC_HOST
 
 # Specify the Dart SDK base image version using dart:<version> (ex: dart:2.12)
 FROM dart:stable AS backend

@@ -15,17 +15,17 @@ import 'dart:core' as $core;
 import 'package:grpc/service_api.dart' as $grpc;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'wallet.pb.dart' as $2;
+import 'wallet.pb.dart' as $3;
 
 export 'wallet.pb.dart';
 
 @$pb.GrpcServiceName('hostelhop.v1.Wallets')
 class WalletsClient extends $grpc.Client {
-  static final _$getWallet = $grpc.ClientMethod<$2.GetWalletRequest, $2.GetWalletResponse>(
+  static final _$getWallet = $grpc.ClientMethod<$3.GetWalletRequest, $3.GetWalletResponse>(
       '/hostelhop.v1.Wallets/GetWallet',
-      ($2.GetWalletRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $2.GetWalletResponse.fromBuffer(value));
-  static final _$getWallets = $grpc.ClientMethod<$2.GetWalletsRequest, $2.GetWalletsResponse>(
+      ($3.GetWalletRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $3.GetWalletResponse.fromBuffer(value));
+  static final _$getWallets = $grpc.ClientMethod<$3.GetWalletsRequest, $3.GetWalletsResponse>(
       '/hostelhop.v1.Wallets/GetWallets',
       ($2.GetWalletsRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $2.GetWalletsResponse.fromBuffer(value));
@@ -44,11 +44,11 @@ class WalletsClient extends $grpc.Client {
       : super(channel, options: options,
         interceptors: interceptors);
 
-  $grpc.ResponseFuture<$2.GetWalletResponse> getWallet($2.GetWalletRequest request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$3.GetWalletResponse> getWallet($3.GetWalletRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$getWallet, request, options: options);
   }
 
-  $grpc.ResponseFuture<$2.GetWalletsResponse> getWallets($2.GetWalletsRequest request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$3.GetWalletsResponse> getWallets($3.GetWalletsRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$getWallets, request, options: options);
   }
 
@@ -66,14 +66,14 @@ abstract class WalletsServiceBase extends $grpc.Service {
   $core.String get $name => 'hostelhop.v1.Wallets';
 
   WalletsServiceBase() {
-    $addMethod($grpc.ServiceMethod<$2.GetWalletRequest, $2.GetWalletResponse>(
+    $addMethod($grpc.ServiceMethod<$3.GetWalletRequest, $3.GetWalletResponse>(
         'GetWallet',
         getWallet_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $2.GetWalletRequest.fromBuffer(value),
-        ($2.GetWalletResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$2.GetWalletsRequest, $2.GetWalletsResponse>(
+        ($core.List<$core.int> value) => $3.GetWalletRequest.fromBuffer(value),
+        ($3.GetWalletResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$3.GetWalletsRequest, $3.GetWalletsResponse>(
         'GetWallets',
         getWallets_Pre,
         false,
@@ -96,11 +96,11 @@ abstract class WalletsServiceBase extends $grpc.Service {
         ($2.UpdateNonWithdrawableCreditResponse value) => value.writeToBuffer()));
   }
 
-  $async.Future<$2.GetWalletResponse> getWallet_Pre($grpc.ServiceCall call, $async.Future<$2.GetWalletRequest> request) async {
+  $async.Future<$3.GetWalletResponse> getWallet_Pre($grpc.ServiceCall call, $async.Future<$3.GetWalletRequest> request) async {
     return getWallet(call, await request);
   }
 
-  $async.Future<$2.GetWalletsResponse> getWallets_Pre($grpc.ServiceCall call, $async.Future<$2.GetWalletsRequest> request) async {
+  $async.Future<$3.GetWalletsResponse> getWallets_Pre($grpc.ServiceCall call, $async.Future<$3.GetWalletsRequest> request) async {
     return getWallets(call, await request);
   }
 

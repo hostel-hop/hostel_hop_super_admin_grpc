@@ -1,6 +1,7 @@
 import 'package:google_sign_in_platform_interface/google_sign_in_platform_interface.dart';
 import 'package:grpc/grpc_or_grpcweb.dart';
 import 'package:hostel_hop_super_admin/src/generated/property_owners.pbgrpc.dart';
+import 'package:hostel_hop_super_admin/src/generated/role.pbgrpc.dart';
 import 'package:hostel_hop_super_admin/src/generated/wallet.pbgrpc.dart';
 import 'package:hostel_hop_super_admin/src/interceptors/auth.dart';
 import 'package:hostel_hop_super_admin/src/interceptors/debug.dart';
@@ -10,6 +11,8 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 typedef SupabaseAuthClient = GoTrueClient;
 
 final GoogleSignInPlatform platform = GoogleSignInPlatform.instance;
+
+const grpcHost = String.fromEnvironment('GRPC_HOST');
 
 @module
 abstract class RegisterModule {
@@ -27,17 +30,22 @@ abstract class RegisterModule {
     return platform;
   }
 
+  @singleton
   GrpcOrGrpcWebClientChannel grpcOrGrpcWebClientChannel() {
-    return GrpcOrGrpcWebClientChannel.toSingleEndpoint(
-      // host: "hostelhop-grpc-dev-td3eu4ynlq-oa.a.run.app",
-      // port: 443,
-      // transportSecure: true,
-      host: "localhost",
-      port: 8080,
-      transportSecure: false,
-    );
+    return grpcHost.isEmpty
+        ? GrpcOrGrpcWebClientChannel.toSingleEndpoint(
+            host: "localhost",
+            port: 8080,
+            transportSecure: false,
+          )
+        : GrpcOrGrpcWebClientChannel.toSingleEndpoint(
+            host: const String.fromEnvironment('GRPC_HOST'),
+            port: 443,
+            transportSecure: true,
+          );
   }
 
+  @LazySingleton()
   WalletsClient walletsClient(GrpcOrGrpcWebClientChannel channel) {
     return WalletsClient(
       channel,
@@ -48,9 +56,21 @@ abstract class RegisterModule {
     );
   }
 
+  @LazySingleton()
   PropertyOwnersClient propertyOwnersClient(
       GrpcOrGrpcWebClientChannel channel) {
     return PropertyOwnersClient(
+      channel,
+      interceptors: [
+        AuthMessageClientInterceptor(),
+        DebugMessageClientInterceptor()
+      ],
+    );
+  }
+
+  @LazySingleton()
+  RoleClient roleClient(GrpcOrGrpcWebClientChannel channel) {
+    return RoleClient(
       channel,
       interceptors: [
         AuthMessageClientInterceptor(),
