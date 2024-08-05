@@ -19,6 +19,7 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> signIn(GoogleSignInUserData data) async {
     try {
       emit(state.copyWith(status: LoginStatus.loading));
+
       final idToken = data.idToken;
 
       if (idToken == null) {
