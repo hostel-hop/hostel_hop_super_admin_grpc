@@ -70,7 +70,7 @@ class AmbassadorsContent extends HookWidget {
                       children: [
                         const Padding(
                           padding: EdgeInsets.all(20),
-                          child: Text('Property wallets'),
+                          child: Text('User wallets'),
                         ),
                         Theme(
                           data: Theme.of(context).copyWith(
