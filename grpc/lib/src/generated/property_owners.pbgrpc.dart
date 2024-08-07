@@ -15,28 +15,28 @@ import 'dart:core' as $core;
 import 'package:grpc/service_api.dart' as $grpc;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'property_owners.pb.dart' as $1;
+import 'property_owners.pb.dart' as $2;
 
 export 'property_owners.pb.dart';
 
 @$pb.GrpcServiceName('hostelhop.v1.PropertyOwners')
 class PropertyOwnersClient extends $grpc.Client {
-  static final _$getPropertyOwners = $grpc.ClientMethod<$1.GetPropertyOwnersRequest, $1.GetPropertyOwnersResponse>(
+  static final _$getPropertyOwners = $grpc.ClientMethod<$2.GetPropertyOwnersRequest, $2.GetPropertyOwnersResponse>(
       '/hostelhop.v1.PropertyOwners/GetPropertyOwners',
-      ($1.GetPropertyOwnersRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.GetPropertyOwnersResponse.fromBuffer(value));
-  static final _$updatePropertyOwner = $grpc.ClientMethod<$1.UpdatePropertyOwnerRequest, $1.UpdatePropertyOwnerResponse>(
+      ($2.GetPropertyOwnersRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $2.GetPropertyOwnersResponse.fromBuffer(value));
+  static final _$updatePropertyOwner = $grpc.ClientMethod<$2.UpdatePropertyOwnerRequest, $2.UpdatePropertyOwnerResponse>(
       '/hostelhop.v1.PropertyOwners/UpdatePropertyOwner',
-      ($1.UpdatePropertyOwnerRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.UpdatePropertyOwnerResponse.fromBuffer(value));
-  static final _$updatePropertyOwnerPassword = $grpc.ClientMethod<$1.UpdatePropertyOwnerPasswordRequest, $1.UpdatePropertyOwnerPasswordResponse>(
+      ($2.UpdatePropertyOwnerRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $2.UpdatePropertyOwnerResponse.fromBuffer(value));
+  static final _$updatePropertyOwnerPassword = $grpc.ClientMethod<$2.UpdatePropertyOwnerPasswordRequest, $2.UpdatePropertyOwnerPasswordResponse>(
       '/hostelhop.v1.PropertyOwners/UpdatePropertyOwnerPassword',
-      ($1.UpdatePropertyOwnerPasswordRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.UpdatePropertyOwnerPasswordResponse.fromBuffer(value));
-  static final _$updatePropertyOwnerEmail = $grpc.ClientMethod<$1.UpdatePropertyOwnerEmailRequest, $1.UpdatePropertyOwnerEmailResponse>(
+      ($2.UpdatePropertyOwnerPasswordRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $2.UpdatePropertyOwnerPasswordResponse.fromBuffer(value));
+  static final _$updatePropertyOwnerEmail = $grpc.ClientMethod<$2.UpdatePropertyOwnerEmailRequest, $2.UpdatePropertyOwnerEmailResponse>(
       '/hostelhop.v1.PropertyOwners/UpdatePropertyOwnerEmail',
-      ($1.UpdatePropertyOwnerEmailRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.UpdatePropertyOwnerEmailResponse.fromBuffer(value));
+      ($2.UpdatePropertyOwnerEmailRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $2.UpdatePropertyOwnerEmailResponse.fromBuffer(value));
 
   PropertyOwnersClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -44,19 +44,19 @@ class PropertyOwnersClient extends $grpc.Client {
       : super(channel, options: options,
         interceptors: interceptors);
 
-  $grpc.ResponseFuture<$1.GetPropertyOwnersResponse> getPropertyOwners($1.GetPropertyOwnersRequest request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$2.GetPropertyOwnersResponse> getPropertyOwners($2.GetPropertyOwnersRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$getPropertyOwners, request, options: options);
   }
 
-  $grpc.ResponseFuture<$1.UpdatePropertyOwnerResponse> updatePropertyOwner($1.UpdatePropertyOwnerRequest request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$2.UpdatePropertyOwnerResponse> updatePropertyOwner($2.UpdatePropertyOwnerRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$updatePropertyOwner, request, options: options);
   }
 
-  $grpc.ResponseFuture<$1.UpdatePropertyOwnerPasswordResponse> updatePropertyOwnerPassword($1.UpdatePropertyOwnerPasswordRequest request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$2.UpdatePropertyOwnerPasswordResponse> updatePropertyOwnerPassword($2.UpdatePropertyOwnerPasswordRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$updatePropertyOwnerPassword, request, options: options);
   }
 
-  $grpc.ResponseFuture<$1.UpdatePropertyOwnerEmailResponse> updatePropertyOwnerEmail($1.UpdatePropertyOwnerEmailRequest request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$2.UpdatePropertyOwnerEmailResponse> updatePropertyOwnerEmail($2.UpdatePropertyOwnerEmailRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$updatePropertyOwnerEmail, request, options: options);
   }
 }
@@ -66,54 +66,54 @@ abstract class PropertyOwnersServiceBase extends $grpc.Service {
   $core.String get $name => 'hostelhop.v1.PropertyOwners';
 
   PropertyOwnersServiceBase() {
-    $addMethod($grpc.ServiceMethod<$1.GetPropertyOwnersRequest, $1.GetPropertyOwnersResponse>(
+    $addMethod($grpc.ServiceMethod<$2.GetPropertyOwnersRequest, $2.GetPropertyOwnersResponse>(
         'GetPropertyOwners',
         getPropertyOwners_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $1.GetPropertyOwnersRequest.fromBuffer(value),
-        ($1.GetPropertyOwnersResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$1.UpdatePropertyOwnerRequest, $1.UpdatePropertyOwnerResponse>(
+        ($core.List<$core.int> value) => $2.GetPropertyOwnersRequest.fromBuffer(value),
+        ($2.GetPropertyOwnersResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$2.UpdatePropertyOwnerRequest, $2.UpdatePropertyOwnerResponse>(
         'UpdatePropertyOwner',
         updatePropertyOwner_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $1.UpdatePropertyOwnerRequest.fromBuffer(value),
-        ($1.UpdatePropertyOwnerResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$1.UpdatePropertyOwnerPasswordRequest, $1.UpdatePropertyOwnerPasswordResponse>(
+        ($core.List<$core.int> value) => $2.UpdatePropertyOwnerRequest.fromBuffer(value),
+        ($2.UpdatePropertyOwnerResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$2.UpdatePropertyOwnerPasswordRequest, $2.UpdatePropertyOwnerPasswordResponse>(
         'UpdatePropertyOwnerPassword',
         updatePropertyOwnerPassword_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $1.UpdatePropertyOwnerPasswordRequest.fromBuffer(value),
-        ($1.UpdatePropertyOwnerPasswordResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$1.UpdatePropertyOwnerEmailRequest, $1.UpdatePropertyOwnerEmailResponse>(
+        ($core.List<$core.int> value) => $2.UpdatePropertyOwnerPasswordRequest.fromBuffer(value),
+        ($2.UpdatePropertyOwnerPasswordResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$2.UpdatePropertyOwnerEmailRequest, $2.UpdatePropertyOwnerEmailResponse>(
         'UpdatePropertyOwnerEmail',
         updatePropertyOwnerEmail_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $1.UpdatePropertyOwnerEmailRequest.fromBuffer(value),
-        ($1.UpdatePropertyOwnerEmailResponse value) => value.writeToBuffer()));
+        ($core.List<$core.int> value) => $2.UpdatePropertyOwnerEmailRequest.fromBuffer(value),
+        ($2.UpdatePropertyOwnerEmailResponse value) => value.writeToBuffer()));
   }
 
-  $async.Future<$1.GetPropertyOwnersResponse> getPropertyOwners_Pre($grpc.ServiceCall call, $async.Future<$1.GetPropertyOwnersRequest> request) async {
+  $async.Future<$2.GetPropertyOwnersResponse> getPropertyOwners_Pre($grpc.ServiceCall call, $async.Future<$2.GetPropertyOwnersRequest> request) async {
     return getPropertyOwners(call, await request);
   }
 
-  $async.Future<$1.UpdatePropertyOwnerResponse> updatePropertyOwner_Pre($grpc.ServiceCall call, $async.Future<$1.UpdatePropertyOwnerRequest> request) async {
+  $async.Future<$2.UpdatePropertyOwnerResponse> updatePropertyOwner_Pre($grpc.ServiceCall call, $async.Future<$2.UpdatePropertyOwnerRequest> request) async {
     return updatePropertyOwner(call, await request);
   }
 
-  $async.Future<$1.UpdatePropertyOwnerPasswordResponse> updatePropertyOwnerPassword_Pre($grpc.ServiceCall call, $async.Future<$1.UpdatePropertyOwnerPasswordRequest> request) async {
+  $async.Future<$2.UpdatePropertyOwnerPasswordResponse> updatePropertyOwnerPassword_Pre($grpc.ServiceCall call, $async.Future<$2.UpdatePropertyOwnerPasswordRequest> request) async {
     return updatePropertyOwnerPassword(call, await request);
   }
 
-  $async.Future<$1.UpdatePropertyOwnerEmailResponse> updatePropertyOwnerEmail_Pre($grpc.ServiceCall call, $async.Future<$1.UpdatePropertyOwnerEmailRequest> request) async {
+  $async.Future<$2.UpdatePropertyOwnerEmailResponse> updatePropertyOwnerEmail_Pre($grpc.ServiceCall call, $async.Future<$2.UpdatePropertyOwnerEmailRequest> request) async {
     return updatePropertyOwnerEmail(call, await request);
   }
 
-  $async.Future<$1.GetPropertyOwnersResponse> getPropertyOwners($grpc.ServiceCall call, $1.GetPropertyOwnersRequest request);
-  $async.Future<$1.UpdatePropertyOwnerResponse> updatePropertyOwner($grpc.ServiceCall call, $1.UpdatePropertyOwnerRequest request);
-  $async.Future<$1.UpdatePropertyOwnerPasswordResponse> updatePropertyOwnerPassword($grpc.ServiceCall call, $1.UpdatePropertyOwnerPasswordRequest request);
-  $async.Future<$1.UpdatePropertyOwnerEmailResponse> updatePropertyOwnerEmail($grpc.ServiceCall call, $1.UpdatePropertyOwnerEmailRequest request);
+  $async.Future<$2.GetPropertyOwnersResponse> getPropertyOwners($grpc.ServiceCall call, $2.GetPropertyOwnersRequest request);
+  $async.Future<$2.UpdatePropertyOwnerResponse> updatePropertyOwner($grpc.ServiceCall call, $2.UpdatePropertyOwnerRequest request);
+  $async.Future<$2.UpdatePropertyOwnerPasswordResponse> updatePropertyOwnerPassword($grpc.ServiceCall call, $2.UpdatePropertyOwnerPasswordRequest request);
+  $async.Future<$2.UpdatePropertyOwnerEmailResponse> updatePropertyOwnerEmail($grpc.ServiceCall call, $2.UpdatePropertyOwnerEmailRequest request);
 }

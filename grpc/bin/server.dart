@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:grpc/grpc.dart';
 import 'package:hostel_hop_grpc/src/injector/injector.config.dart';
+import 'package:hostel_hop_grpc/src/services/ambassadors_service.dart';
 import 'package:hostel_hop_grpc/src/services/property_owner_service.dart';
 import 'package:hostel_hop_grpc/src/services/role_service.dart';
 import 'package:hostel_hop_grpc/src/services/wallets_service.dart';
@@ -19,6 +20,7 @@ Future<void> main(List<String> args) async {
         getIt<RoleService>(),
         getIt<WalletsService>(),
         getIt<PropertyOwnersService>(),
+        getIt<AmbassadorService>(),
       ],
       codecRegistry: CodecRegistry(codecs: const [
         GzipCodec(),

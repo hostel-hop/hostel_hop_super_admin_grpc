@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hostel_hop_super_admin/main.dart';
+import 'package:hostel_hop_super_admin/src/features/ambassadors/view/ambassadors_page.dart';
 import 'package:hostel_hop_super_admin/src/features/home/view/home_page.dart';
 import 'package:hostel_hop_super_admin/src/features/login/view/login_page.dart';
 import 'package:hostel_hop_super_admin/src/features/property_owners/view/property_owners_page.dart';
@@ -40,6 +41,14 @@ final GoRouter _router = GoRouter(
               pageBuilder: (context, state) {
                 return const NoTransitionPage(
                   child: WalletsPage(),
+                );
+              }),
+                GoRoute(
+              name: 'ambassadors',
+              path: '/ambassadors',
+              pageBuilder: (context, state) {
+                return const NoTransitionPage(
+                  child: AmbassadorsPage(),
                 );
               }),
         ]),

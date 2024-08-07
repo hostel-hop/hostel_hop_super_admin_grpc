@@ -3,7 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hostel_hop_super_admin/generated/assets.gen.dart';
 
-enum HomeTab { owners, wallets }
+enum HomeTab { owners, wallets, ambassadors }
 
 extension HomeTabExtension on HomeTab {
   static String getHomeTabName(HomeTab homeTab, BuildContext context) {
@@ -12,6 +12,8 @@ extension HomeTabExtension on HomeTab {
         return 'Owners';
       case HomeTab.wallets:
         return 'Wallets';
+      case HomeTab.ambassadors:
+        return 'Ambassadors';
     }
   }
 
@@ -20,6 +22,8 @@ extension HomeTabExtension on HomeTab {
       return HomeTab.owners;
     } else if (path.contains('/wallets')) {
       return HomeTab.wallets;
+    } else if (path.contains('/ambassadors')) {
+      return HomeTab.ambassadors;
     }
 
     return HomeTab.owners;
@@ -31,6 +35,8 @@ extension HomeTabExtension on HomeTab {
         return 'owners';
       case HomeTab.wallets:
         return 'wallets';
+      case HomeTab.ambassadors:
+        return 'ambassadors';
     }
   }
 
@@ -40,6 +46,8 @@ extension HomeTabExtension on HomeTab {
         return const Icon(Icons.person);
       case HomeTab.wallets:
         return const Icon(Icons.wallet);
+      case HomeTab.ambassadors:
+        return const Icon(Icons.people);
     }
   }
 
@@ -49,6 +57,8 @@ extension HomeTabExtension on HomeTab {
         return HomeTab.owners;
       case 1:
         return HomeTab.wallets;
+      case 2:
+        return HomeTab.ambassadors;
     }
     return HomeTab.owners;
   }
@@ -148,6 +158,32 @@ class HomePage extends HookWidget {
                       Text(
                         HomeTabExtension.getHomeTabName(
                           HomeTab.wallets,
+                          context,
+                        ),
+                      )
+                    ]),
+                  ),
+                ),
+                Tab(
+                  iconMargin: EdgeInsets.zero,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: selectedIndex.value == 1
+                          ? Colors.transparent
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: selectedIndex.value == 0
+                            ? const Radius.circular(10)
+                            : Radius.zero,
+                      ),
+                    ),
+                    child: Row(children: [
+                      const SizedBox(width: 20),
+                      HomeTab.ambassadors.icon,
+                      const SizedBox(width: 10),
+                      Text(
+                        HomeTabExtension.getHomeTabName(
+                          HomeTab.ambassadors,
                           context,
                         ),
                       )

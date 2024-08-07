@@ -15,16 +15,16 @@ import 'dart:core' as $core;
 import 'package:grpc/service_api.dart' as $grpc;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'property.pb.dart' as $0;
+import 'property.pb.dart' as $1;
 
 export 'property.pb.dart';
 
 @$pb.GrpcServiceName('hostelhop.v1.Properties')
 class PropertiesClient extends $grpc.Client {
-  static final _$getProperties = $grpc.ClientMethod<$0.GetPropertiesRequest, $0.GetPropertiesResponse>(
+  static final _$getProperties = $grpc.ClientMethod<$1.GetPropertiesRequest, $1.GetPropertiesResponse>(
       '/hostelhop.v1.Properties/GetProperties',
-      ($0.GetPropertiesRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.GetPropertiesResponse.fromBuffer(value));
+      ($1.GetPropertiesRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.GetPropertiesResponse.fromBuffer(value));
 
   PropertiesClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -32,7 +32,7 @@ class PropertiesClient extends $grpc.Client {
       : super(channel, options: options,
         interceptors: interceptors);
 
-  $grpc.ResponseFuture<$0.GetPropertiesResponse> getProperties($0.GetPropertiesRequest request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$1.GetPropertiesResponse> getProperties($1.GetPropertiesRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$getProperties, request, options: options);
   }
 }
@@ -42,18 +42,18 @@ abstract class PropertiesServiceBase extends $grpc.Service {
   $core.String get $name => 'hostelhop.v1.Properties';
 
   PropertiesServiceBase() {
-    $addMethod($grpc.ServiceMethod<$0.GetPropertiesRequest, $0.GetPropertiesResponse>(
+    $addMethod($grpc.ServiceMethod<$1.GetPropertiesRequest, $1.GetPropertiesResponse>(
         'GetProperties',
         getProperties_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $0.GetPropertiesRequest.fromBuffer(value),
-        ($0.GetPropertiesResponse value) => value.writeToBuffer()));
+        ($core.List<$core.int> value) => $1.GetPropertiesRequest.fromBuffer(value),
+        ($1.GetPropertiesResponse value) => value.writeToBuffer()));
   }
 
-  $async.Future<$0.GetPropertiesResponse> getProperties_Pre($grpc.ServiceCall call, $async.Future<$0.GetPropertiesRequest> request) async {
+  $async.Future<$1.GetPropertiesResponse> getProperties_Pre($grpc.ServiceCall call, $async.Future<$1.GetPropertiesRequest> request) async {
     return getProperties(call, await request);
   }
 
-  $async.Future<$0.GetPropertiesResponse> getProperties($grpc.ServiceCall call, $0.GetPropertiesRequest request);
+  $async.Future<$1.GetPropertiesResponse> getProperties($grpc.ServiceCall call, $1.GetPropertiesRequest request);
 }

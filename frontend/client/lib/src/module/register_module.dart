@@ -1,5 +1,6 @@
 import 'package:google_sign_in_platform_interface/google_sign_in_platform_interface.dart';
 import 'package:grpc/grpc_or_grpcweb.dart';
+import 'package:hostel_hop_super_admin/src/generated/ambassador.pbgrpc.dart';
 import 'package:hostel_hop_super_admin/src/generated/property_owners.pbgrpc.dart';
 import 'package:hostel_hop_super_admin/src/generated/role.pbgrpc.dart';
 import 'package:hostel_hop_super_admin/src/generated/wallet.pbgrpc.dart';
@@ -48,6 +49,17 @@ abstract class RegisterModule {
   @LazySingleton()
   WalletsClient walletsClient(GrpcOrGrpcWebClientChannel channel) {
     return WalletsClient(
+      channel,
+      interceptors: [
+        AuthMessageClientInterceptor(),
+        DebugMessageClientInterceptor()
+      ],
+    );
+  }
+
+   @LazySingleton()
+  AmbassadorsClient ambassadorClient(GrpcOrGrpcWebClientChannel channel) {
+    return AmbassadorsClient(
       channel,
       interceptors: [
         AuthMessageClientInterceptor(),

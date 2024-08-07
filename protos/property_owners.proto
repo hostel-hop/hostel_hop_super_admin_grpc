@@ -7,6 +7,7 @@ service PropertyOwners {
   rpc UpdatePropertyOwner (UpdatePropertyOwnerRequest) returns (UpdatePropertyOwnerResponse) {}
   rpc UpdatePropertyOwnerPassword (UpdatePropertyOwnerPasswordRequest) returns (UpdatePropertyOwnerPasswordResponse) {}
   rpc UpdatePropertyOwnerEmail (UpdatePropertyOwnerEmailRequest) returns (UpdatePropertyOwnerEmailResponse) {}
+ 
   
 }
 
@@ -50,6 +51,9 @@ message PropertyOwner {
   string hostel_hop_id = 4;
   string email = 5;
 }
+
+
+
 
 
 

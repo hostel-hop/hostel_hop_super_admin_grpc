@@ -67,9 +67,9 @@ class PropertyOwnerRepository implements IPropertyOwnerRepository {
     }
   }
 
-
   @override
-  Future<Either<Failure, UpdatePropertyOwnerEmailResponse>> updatePropertyOwnerEmail(
+  Future<Either<Failure, UpdatePropertyOwnerEmailResponse>>
+      updatePropertyOwnerEmail(
     String skyflowId,
     String email,
   ) async {
