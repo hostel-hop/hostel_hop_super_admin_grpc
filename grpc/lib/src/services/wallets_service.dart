@@ -30,7 +30,7 @@ class WalletsService extends WalletsServiceBase {
           Match(where.eq('backpacker.username', '$query').map['\$query']));
     } else {
       aggregationBuilder = aggregationBuilder.addStage(Limit(20));
-    }
+  }
 
     aggregationBuilder = aggregationBuilder.addStage(Project({
       'backpacker.username': 1,

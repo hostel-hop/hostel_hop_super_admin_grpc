@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package hostelhop.v1;
+
+service OtaReservationPush {
+  rpc ListOtaReservationPushes (ListOtaReservationPushesRequest) returns (ListOtaReservationPushesResponse) {}
+}
+
+message ListOtaReservationPushesRequest {
+  string query = 1;
+}
+
+message ListOtaReservationPushesResponse {
+  repeated OtaReservationPush ota_reservation_pushes = 1;
+}
+
+//OtaReservationPush
+// {
+//     "_id": {
+//       "$oid": "6606fc7f12ff88b50140f049"
+//     },
+//     "property": {
+//       "$oid": "65f876daa3b491571a14b0d1"
+//     },
+//     "channelManager": "channex",
+//     "reservation": {
+//       "$oid": "6606fc7854d1622f780bb769"
+//     },
+//     "type": "confirmed",
+//     "status": "processed",
+//     "createdAt": {
+//       "$date": "2024-03-29T17:38:07.473Z"
+//     },
+//     "updatedAt": {
+//       "$date": "2024-03-29T17:38:07.473Z"
+//     },
+//     "lastAttemptedAt": {
+//       "$date": "2024-03-29T17:38:12.330Z"
+//     },
+//     "retries": {
+//       "$numberLong": "0"
+//     }
+//   }
+
+message OtaReservationPush {
+  string id = 1;
+  string property = 2;
+  string channel_manager = 3;
+  string reservation = 4;
+  string type = 5;
+  string status = 6;
+  string created_at = 7;
+  string updated_at = 8;
+  string last_attempted_at = 9;
+  string retries = 10;
+}
+
+
