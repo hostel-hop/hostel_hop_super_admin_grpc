@@ -38,10 +38,14 @@ class AmbassadorsContent extends HookWidget {
           final rows = List.generate(referrals.length, (index) {
             final referral = referrals[index];
             return DataRow(cells: [
-              DataCell(Text(referral.backpackerId)),
-              DataCell(Text(referral.username)),
-              DataCell(Text(referral.type.toString() == '1' ? 'Yes' : 'No')),
-              DataCell(Text(referral.code.toString())),
+              DataCell(Text(referral.backpackerId,
+                  style: const TextStyle(fontSize: 12))),
+              DataCell(Text(referral.username,
+                  style: const TextStyle(fontSize: 12))),
+              DataCell(Text(referral.type.toString() == '1' ? 'Yes' : 'No',
+                  style: const TextStyle(fontSize: 12))),
+              DataCell(Text(referral.code.toString(),
+                  style: const TextStyle(fontSize: 12))),
               DataCell(Row(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -52,74 +56,85 @@ class AmbassadorsContent extends HookWidget {
                         context.read<AmbassadorsCubit>().changeStatus(
                             id: referral.backpackerId, type: referral.type);
                       },
-                      child: const Text('Change Ambassador Status')),
+                      child: const Text('Change Ambassador Status',
+                          style: TextStyle(fontSize: 12))),
                 ],
               )),
             ]);
           });
 
-          return SelectionArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 30),
-              child: FadeInUpCard(
-                padding: EdgeInsets.zero,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Row(
+          return LayoutBuilder(
+            builder: (context, constraints) {
+              return SelectionArea(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 30),
+                  child: FadeInUpCard(
+                    padding: EdgeInsets.zero,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.all(20),
-                          child: Text('User wallets'),
+                        Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Row(
+                            children: [
+                              const Text('User wallets'),
+                              const SizedBox(width: 20),
+                              Expanded(
+                                child: AnimSearchBar(
+                                  width: constraints.maxWidth < 600 ? 200 : 400,
+                                  textController: textController,
+                                  onSuffixTap: () {},
+                                  onSubmitted: (String value) {
+                                    context
+                                        .read<AmbassadorsCubit>()
+                                        .search(value);
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        Theme(
-                          data: Theme.of(context).copyWith(
-                              inputDecorationTheme:
-                                  const InputDecorationTheme()),
-                          child: AnimSearchBar(
-                            width: 400,
-                            textController: textController,
-                            onSuffixTap: () {},
-                            onSubmitted: (String value) {
-                              context.read<AmbassadorsCubit>().search(value);
-                            },
+                        const Divider(),
+                        Expanded(
+                          child: ConstrainedBox(
+                            constraints:
+                                BoxConstraints(minWidth: constraints.maxWidth),
+                            child: DataTable2(
+                              columnSpacing:
+                                  constraints.maxWidth < 600 ? 10 : 20,
+                              dataRowHeight: 100,
+                              columns: const [
+                                DataColumn(
+                                  label: Text('Backpacker ID',
+                                      style: TextStyle(fontSize: 12)),
+                                ),
+                                DataColumn(
+                                  label: Text('Username',
+                                      style: TextStyle(fontSize: 12)),
+                                ),
+                                DataColumn(
+                                  label: Text('Is Ambassador',
+                                      style: TextStyle(fontSize: 12)),
+                                ),
+                                DataColumn(
+                                  label: Text('Referral Code',
+                                      style: TextStyle(fontSize: 12)),
+                                ),
+                                DataColumn(
+                                  label: Text('Actions',
+                                      style: TextStyle(fontSize: 12)),
+                                ),
+                              ],
+                              rows: rows,
+                            ),
                           ),
                         ),
                       ],
                     ),
-                    const Divider(),
-                    Expanded(
-                      child: Stack(
-                        children: [
-                          DataTable2(
-                            scrollController: scrollController,
-                            dataRowHeight: 100,
-                            columns: const [
-                              DataColumn(
-                                label: Text('Backpacker ID'),
-                              ),
-                              DataColumn(
-                                label: Text('Username'),
-                              ),
-                              DataColumn(
-                                label: Text('Is Ambassador'),
-                              ),
-                              DataColumn(
-                                label: Text('Referral Code'),
-                              ),
-                              DataColumn(
-                                label: Text('Actions'),
-                              ),
-                            ],
-                            rows: rows,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
+              );
+            },
           );
         } else if (state is AmbassadorsError) {
           return const Center(child: Text('Error loading wallets'));

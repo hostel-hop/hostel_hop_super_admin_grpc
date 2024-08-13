@@ -38,14 +38,14 @@ class WalletsContent extends HookWidget {
           final rows = List.generate(wallets.length, (index) {
             final wallet = wallets[index];
             return DataRow(cells: [
-              DataCell(Text(wallet.backpackerId)),
-              DataCell(Text(wallet.username)),
-              DataCell(Text(wallet.balanceOfNonWithdrawableCredits.toString())),
-              DataCell(Text(wallet.balanceOfWithdrawableCredits.toString())),
-              DataCell(Text(
-                  wallet.balanceOfPendingNonWithdrawableCredits.toString())),
+              DataCell(Text(wallet.backpackerId,
+                  style: const TextStyle(fontSize: 12))),
               DataCell(
-                  Text(wallet.balanceOfPendingWithdrawableCredits.toString())),
+                  Text(wallet.username, style: const TextStyle(fontSize: 12))),
+              DataCell(Text(wallet.balanceOfNonWithdrawableCredits.toString(),
+                  style: const TextStyle(fontSize: 12))),
+              DataCell(Text(wallet.balanceOfWithdrawableCredits.toString(),
+                  style: const TextStyle(fontSize: 12))),
               DataCell(Row(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -177,84 +177,116 @@ class WalletsContent extends HookWidget {
                         },
                       );
                     },
-                    child: const Text('Update Credits'),
+                    child: const Text('Update Credits',
+                        style: TextStyle(fontSize: 12)),
                   ),
                 ],
               )),
             ]);
           });
 
-          return SelectionArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 30),
-              child: FadeInUpCard(
-                padding: EdgeInsets.zero,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Row(
+          return LayoutBuilder(
+            builder: (context, constraints) {
+              return SelectionArea(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 30),
+                  child: FadeInUpCard(
+                    padding: EdgeInsets.zero,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.all(20),
-                          child: Text('User wallets'),
+                        Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Row(
+                            children: [
+                              const Text('User wallets'),
+                              const SizedBox(width: 20),
+                              Expanded(
+                                child: AnimSearchBar(
+                                  width: constraints.maxWidth < 600 ? 200 : 400,
+                                  textController: textController,
+                                  onSuffixTap: () {},
+                                  onSubmitted: (String value) {
+                                    context.read<WalletsCubit>().search(value);
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        Theme(
-                          data: Theme.of(context).copyWith(
-                              inputDecorationTheme:
-                                  const InputDecorationTheme()),
-                          child: AnimSearchBar(
-                            width: 400,
-                            textController: textController,
-                            onSuffixTap: () {},
-                            onSubmitted: (String value) {
-                              context.read<WalletsCubit>().search(value);
-                            },
+                        const Divider(),
+                        Expanded(
+                          child: ConstrainedBox(
+                            constraints:
+                                BoxConstraints(minWidth: constraints.maxWidth),
+                            child: DataTable2(
+                              scrollController: scrollController,
+                              dataRowHeight:
+                                  constraints.maxWidth < 600 ? 60 : 100,
+                              columnSpacing:
+                                  constraints.maxWidth < 600 ? 5 : 20,
+                              columns: const [
+                                DataColumn(
+                                  label: Flexible(
+                                    child: Text(
+                                      'Backpacker ID',
+                                      overflow: TextOverflow.ellipsis,
+                                      softWrap: true,
+                                      style: TextStyle(fontSize: 12),
+                                    ),
+                                  ),
+                                ),
+                                DataColumn(
+                                  label: Flexible(
+                                    child: Text(
+                                      'Username',
+                                      overflow: TextOverflow.ellipsis,
+                                      softWrap: true,
+                                      style: TextStyle(fontSize: 12),
+                                    ),
+                                  ),
+                                ),
+                                DataColumn(
+                                  label: Flexible(
+                                    child: Text(
+                                      'Withdrawable Credits',
+                                      overflow: TextOverflow.ellipsis,
+                                      softWrap: true,
+                                      style: TextStyle(fontSize: 12),
+                                    ),
+                                  ),
+                                ),
+                                DataColumn(
+                                  label: Flexible(
+                                    child: Text(
+                                      'Non-Withdrawable Credits',
+                                      overflow: TextOverflow.ellipsis,
+                                      softWrap: true,
+                                      style: TextStyle(fontSize: 12),
+                                    ),
+                                  ),
+                                ),
+                                DataColumn(
+                                  label: Flexible(
+                                    child: Text(
+                                      'Actions',
+                                      overflow: TextOverflow.ellipsis,
+                                      softWrap: true,
+                                      style: TextStyle(fontSize: 12),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                              rows: rows,
+                            ),
                           ),
                         ),
                       ],
                     ),
-                    const Divider(),
-                    Expanded(
-                      child: Stack(
-                        children: [
-                          DataTable2(
-                            scrollController: scrollController,
-                            dataRowHeight: 100,
-                            columns: const [
-                              DataColumn(
-                                label: Text('Backpacker ID'),
-                              ),
-                              DataColumn(
-                                label: Text('Username'),
-                              ),
-                              DataColumn(
-                                label: Text('Balance of Withdrawable Credits'),
-                              ),
-                              DataColumn(
-                                label:
-                                    Text('Balance of Non-Withdrawable Credits'),
-                              ),
-                              DataColumn(
-                                label: Text(
-                                    'Balance of Pending Withdrawable Credits'),
-                              ),
-                              DataColumn(
-                                label: Text(
-                                    'Balance of Pending Non-Withdrawable Credits'),
-                              ),
-                              DataColumn(
-                                label: Text('Actions'),
-                              ),
-                            ],
-                            rows: rows,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
+              );
+            },
           );
         } else if (state is WalletsError) {
           return const Center(child: Text('Error loading wallets'));
