@@ -29,6 +29,8 @@ dependencies:
   anim_search_bar: ^2.0.3
   animate_do: ^3.3.4
   google_fonts: ^6.2.1
+  sentry_flutter: ^8.7.0
+  package_info_plus: ^8.0.2
 
 dev_dependencies:
   flutter_test:
@@ -37,6 +39,7 @@ dev_dependencies:
   injectable_generator: ^2.6.1
   build_runner: ^2.4.11
   supabase: ^2.2.2
+  sentry_dart_plugin: ^1.0.0
 
 flutter_gen:
   output: lib/generated/
@@ -50,3 +53,16 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
+
+sentry:
+  upload_debug_symbols: true
+  upload_source_maps: true
+  upload_sources: false
+  project: hostel_hop_super_admin
+  org: hostel-hop-iv
+  auth_token: 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
+  wait_for_processing: true
+  log_level: error
+  commits: auto
+  ignore_missing: true
+  web_build_path: build/web
