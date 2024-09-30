@@ -16,7 +16,7 @@
                 "--dart-define=GOOGLE_WEB_CLIENT_ID=342608150586-n89ota6s5na8957nu3l0achpt97o7o0n.apps.googleusercontent.com",
                 "--dart-define=GOOGLE_CLIENT_ID=342608150586-3pks9tcv4dj33ai7hqu6sqdibq49994r.apps.googleusercontent.com",
                 "--web-port",
-                "3000"
+                "3000",
             ]
         },
         {
@@ -59,7 +59,7 @@
                 "--dart-define=GOOGLE_WEB_CLIENT_ID=930572631553-9p9u1hml975qspg2grbdgj7svrmb59mr.apps.googleusercontent.com",
                 "--dart-define=GRPC_HOST=hostelhop-super-admin-grpc-a5buyscvha-oa.a.run.app",
                 "--web-port",
-                "5000"
+                "5000",
              ]
         },
         {

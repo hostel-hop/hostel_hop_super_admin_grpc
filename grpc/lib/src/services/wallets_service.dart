@@ -14,49 +14,57 @@ class WalletsService extends WalletsServiceBase {
   @override
   Future<GetWalletsResponse> getWallets(
       ServiceCall call, GetWalletsRequest request) async {
-    final query = request.query;
-    var aggregationBuilder = AggregationPipelineBuilder()
-        .addStage(Lookup(
-            from: 'backpackers',
-            localField: 'backpacker',
-            foreignField: '_id',
-            as: 'backpacker'))
-        .addStage(Unwind(
-          Field('backpacker'),
-        ));
+    try {
+      final query = request.query;
+      var aggregationBuilder = AggregationPipelineBuilder()
+          .addStage(Lookup(
+              from: 'backpackers',
+              localField: 'backpacker',
+              foreignField: '_id',
+              as: 'backpacker'))
+          .addStage(Unwind(
+            Field('backpacker'),
+          ));
 
-    if (query.isNotEmpty) {
-      aggregationBuilder = aggregationBuilder.addStage(
-          Match(where.eq('backpacker.username', '$query').map['\$query']));
-    } else {
-      aggregationBuilder = aggregationBuilder.addStage(Limit(20));
-  }
+      if (query.isNotEmpty) {
+        aggregationBuilder = aggregationBuilder.addStage(
+            Match(where.eq('backpacker.username', '$query').map['\$query']));
+      } else {
+        aggregationBuilder = aggregationBuilder.addStage(Limit(20));
+      }
 
-    aggregationBuilder = aggregationBuilder.addStage(Project({
-      'backpacker.username': 1,
-      'backpacker._id': 1,
-      'balanceNoOfWithdrawableCredits': 1,
-      'balanceNoOfNonWithdrawableCredits': 1,
-      'balanceNoOfPendingWithdrawableCredits': 1,
-      'balanceNOOfPendingNonWithdrawableCredits': 1,
-    }));
-    final pipeline = aggregationBuilder.build();
-    final docs = await _walletsCollection.modernAggregate(pipeline).toList();
+      aggregationBuilder = aggregationBuilder.addStage(Project({
+        'backpacker.username': 1,
+        'backpacker._id': 1,
+        'balanceNoOfWithdrawableCredits': 1,
+        'balanceNoOfNonWithdrawableCredits': 1,
+        'balanceNoOfPendingWithdrawableCredits': 1,
+        'balanceNOOfPendingNonWithdrawableCredits': 1,
+      }));
+      final pipeline = aggregationBuilder.build();
+      final docs = await _walletsCollection.modernAggregate(pipeline).toList();
 
-    final wallets = docs.map((doc) {
-      return Wallet(
-        backpackerId: (doc['backpacker']['_id'] as ObjectId).toHexString(),
-        username: doc['backpacker']['username'],
-        balanceOfNonWithdrawableCredits: doc['balanceNoOfWithdrawableCredits'],
-        balanceOfWithdrawableCredits: doc['balanceNoOfNonWithdrawableCredits'],
-        balanceOfPendingNonWithdrawableCredits:
-            doc['balanceNoOfPendingWithdrawableCredits'],
-        balanceOfPendingWithdrawableCredits:
-            doc['balanceNOOfPendingNonWithdrawableCredits'],
-      );
-    });
+      final wallets = docs.map((doc) {
+        return Wallet(
+          backpackerId: (doc['backpacker']['_id'] as ObjectId).toHexString(),
+          username: doc['backpacker']['username'],
+          balanceOfNonWithdrawableCredits:
+              doc['balanceNoOfWithdrawableCredits'],
+          balanceOfWithdrawableCredits:
+              doc['balanceNoOfNonWithdrawableCredits'],
+          balanceOfPendingNonWithdrawableCredits:
+              doc['balanceNoOfPendingWithdrawableCredits'],
+          balanceOfPendingWithdrawableCredits:
+              doc['balanceNOOfPendingNonWithdrawableCredits'],
+        );
+      });
 
-    return Future.value(GetWalletsResponse(wallets: wallets));
+      return Future.value(GetWalletsResponse(wallets: wallets));
+    } catch (e) {
+      print("Get Wallets Error: $e");
+
+      return Future.error(e);
+    }
   }
 
   @override
@@ -70,51 +78,46 @@ class WalletsService extends WalletsServiceBase {
   }
 
   @override
-  Future<UpdateWithdrawableCreditBalanceResponse> updateWithdrawableCreditBalance(
-      ServiceCall call, UpdateWithdrawableCreditBalanceRequest request) async {
+  Future<UpdateWithdrawableCreditBalanceResponse>
+      updateWithdrawableCreditBalance(ServiceCall call,
+          UpdateWithdrawableCreditBalanceRequest request) async {
+    try {
+      final backpackerId = request.backpackerId;
 
-        try {
+      final update = await _walletsCollection.updateOne(
+        where.eq('backpacker', ObjectId.fromHexString(backpackerId)),
+        modify.inc('balanceNoOfWithdrawableCredits', request.addedCredits),
+      );
 
-    final backpackerId = request.backpackerId;
+      if (update.isFailure) {
+        return Future.error('Failed to update balance');
+      }
 
-    final update = await _walletsCollection.updateOne(
-      where.eq('backpacker', ObjectId.fromHexString(backpackerId)),
-      modify.inc('balanceNoOfWithdrawableCredits', request.addedCredits),
-    );
-
-    if (update.isFailure) {
-      return Future.error('Failed to update balance');
-    }
-
-    return UpdateWithdrawableCreditBalanceResponse();
-      } catch (e) {
+      return UpdateWithdrawableCreditBalanceResponse();
+    } catch (e) {
       return Future.error(e);
     }
-
   }
 
-  @override 
-  Future<UpdateNonWithdrawableCreditResponse> updateNonWithdrawableCreditBalance(
-      ServiceCall call, UpdateNonWithdrawableCreditBalanceRequest request) async {
+  @override
+  Future<UpdateNonWithdrawableCreditResponse>
+      updateNonWithdrawableCreditBalance(ServiceCall call,
+          UpdateNonWithdrawableCreditBalanceRequest request) async {
+    try {
+      final backpackerId = request.backpackerId;
 
-        try {
+      final update = await _walletsCollection.updateOne(
+        where.eq('backpacker', ObjectId.fromHexString(backpackerId)),
+        modify.inc('balanceNoOfNonWithdrawableCredits', request.addedCredits),
+      );
 
-    final backpackerId = request.backpackerId;
+      if (update.isFailure) {
+        return Future.error('Failed to update balance');
+      }
 
-    final update = await _walletsCollection.updateOne(
-      where.eq('backpacker', ObjectId.fromHexString(backpackerId)),
-      modify.inc('balanceNoOfNonWithdrawableCredits', request.addedCredits),
-    );
-
-    if (update.isFailure) {
-      return Future.error('Failed to update balance');
-    }
-
-    return UpdateNonWithdrawableCreditResponse();
-      } catch (e) {
+      return UpdateNonWithdrawableCreditResponse();
+    } catch (e) {
       return Future.error(e);
     }
-
   }
-
 }

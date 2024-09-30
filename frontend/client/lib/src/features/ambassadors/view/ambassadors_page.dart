@@ -24,7 +24,6 @@ class AmbassadorsContent extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scrollController = useScrollController();
     final textController = useTextEditingController();
 
     return BlocConsumer<AmbassadorsCubit, AmbassadorsState>(

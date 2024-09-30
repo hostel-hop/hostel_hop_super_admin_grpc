@@ -48,7 +48,6 @@ class WalletsCubit extends Cubit<WalletsState> {
       required int withdrawableCredits,
       required String backpackerId}) async {
     try {
-      
       late final withdrawableResult;
       late final nonWithdrawableResult;
 
@@ -70,9 +69,7 @@ class WalletsCubit extends Cubit<WalletsState> {
       }
 
       emit(WalletsLoading());
-          init();
-
-
+      init();
     } catch (e) {
       emit(WalletsError(e.toString()));
     }

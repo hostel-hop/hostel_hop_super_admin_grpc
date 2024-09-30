@@ -57,7 +57,7 @@ class AmbassadorService extends AmbassadorsServiceBase {
       ServiceCall call, ChangeAmbassadorStatusRequest request) async {
     final newType = request.type == 1 ? 0 : 1;
 
-    final update = await _referralCollection.updateOne(
+    await _referralCollection.updateOne(
       where.eq(
         'backpacker',
         ObjectId.fromHexString(request.backpackerId),
