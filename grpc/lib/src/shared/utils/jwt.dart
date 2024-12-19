@@ -14,8 +14,11 @@ mixin JWTUtilis {
 
       final decoded = JWT.decode(token);
 
-      if ((decoded.payload as Map<String, dynamic>)['user_role'] !=
-          'super_admin') {
+      final payload = decoded.payload as Map<String, dynamic>;
+
+      final userRoles = payload['user_roles'] as List;
+
+      if (!userRoles.contains('super_admin')) {
         return false;
       }
 
