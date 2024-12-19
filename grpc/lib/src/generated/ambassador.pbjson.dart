@@ -78,3 +78,27 @@ const ChangeAmbassadorStatusResponse$json = {
 final $typed_data.Uint8List changeAmbassadorStatusResponseDescriptor = $convert.base64Decode(
     'Ch5DaGFuZ2VBbWJhc3NhZG9yU3RhdHVzUmVzcG9uc2U=');
 
+@$core.Deprecated('Use csvRequestDescriptor instead')
+const CsvRequest$json = {
+  '1': 'CsvRequest',
+  '2': [
+    {'1': 'query', '3': 1, '4': 1, '5': 9, '10': 'query'},
+  ],
+};
+
+/// Descriptor for `CsvRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List csvRequestDescriptor = $convert.base64Decode(
+    'CgpDc3ZSZXF1ZXN0EhQKBXF1ZXJ5GAEgASgJUgVxdWVyeQ==');
+
+@$core.Deprecated('Use csvResponseDescriptor instead')
+const CsvResponse$json = {
+  '1': 'CsvResponse',
+  '2': [
+    {'1': 'csv_data', '3': 1, '4': 1, '5': 12, '10': 'csvData'},
+  ],
+};
+
+/// Descriptor for `CsvResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List csvResponseDescriptor = $convert.base64Decode(
+    'CgtDc3ZSZXNwb25zZRIZCghjc3ZfZGF0YRgBIAEoDFIHY3N2RGF0YQ==');
+

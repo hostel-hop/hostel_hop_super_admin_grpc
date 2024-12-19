@@ -29,6 +29,14 @@ class AmbassadorsClient extends $grpc.Client {
       '/hostelhop.v1.Ambassadors/ChangeAmbassadorStatus',
       ($0.ChangeAmbassadorStatusRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.ChangeAmbassadorStatusResponse.fromBuffer(value));
+  static final _$getAmbassadorCsv = $grpc.ClientMethod<$0.CsvRequest, $0.CsvResponse>(
+      '/hostelhop.v1.Ambassadors/GetAmbassadorCsv',
+      ($0.CsvRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.CsvResponse.fromBuffer(value));
+  static final _$getBackpackersCsv = $grpc.ClientMethod<$0.CsvRequest, $0.CsvResponse>(
+      '/hostelhop.v1.Ambassadors/GetBackpackersCsv',
+      ($0.CsvRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.CsvResponse.fromBuffer(value));
 
   AmbassadorsClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -42,6 +50,14 @@ class AmbassadorsClient extends $grpc.Client {
 
   $grpc.ResponseFuture<$0.ChangeAmbassadorStatusResponse> changeAmbassadorStatus($0.ChangeAmbassadorStatusRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$changeAmbassadorStatus, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.CsvResponse> getAmbassadorCsv($0.CsvRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$getAmbassadorCsv, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.CsvResponse> getBackpackersCsv($0.CsvRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$getBackpackersCsv, request, options: options);
   }
 }
 
@@ -64,6 +80,20 @@ abstract class AmbassadorsServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $0.ChangeAmbassadorStatusRequest.fromBuffer(value),
         ($0.ChangeAmbassadorStatusResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.CsvRequest, $0.CsvResponse>(
+        'GetAmbassadorCsv',
+        getAmbassadorCsv_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.CsvRequest.fromBuffer(value),
+        ($0.CsvResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.CsvRequest, $0.CsvResponse>(
+        'GetBackpackersCsv',
+        getBackpackersCsv_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.CsvRequest.fromBuffer(value),
+        ($0.CsvResponse value) => value.writeToBuffer()));
   }
 
   $async.Future<$0.GetReferralsResponse> getReferrals_Pre($grpc.ServiceCall call, $async.Future<$0.GetReferralsRequest> request) async {
@@ -74,6 +104,16 @@ abstract class AmbassadorsServiceBase extends $grpc.Service {
     return changeAmbassadorStatus(call, await request);
   }
 
+  $async.Future<$0.CsvResponse> getAmbassadorCsv_Pre($grpc.ServiceCall call, $async.Future<$0.CsvRequest> request) async {
+    return getAmbassadorCsv(call, await request);
+  }
+
+  $async.Future<$0.CsvResponse> getBackpackersCsv_Pre($grpc.ServiceCall call, $async.Future<$0.CsvRequest> request) async {
+    return getBackpackersCsv(call, await request);
+  }
+
   $async.Future<$0.GetReferralsResponse> getReferrals($grpc.ServiceCall call, $0.GetReferralsRequest request);
   $async.Future<$0.ChangeAmbassadorStatusResponse> changeAmbassadorStatus($grpc.ServiceCall call, $0.ChangeAmbassadorStatusRequest request);
+  $async.Future<$0.CsvResponse> getAmbassadorCsv($grpc.ServiceCall call, $0.CsvRequest request);
+  $async.Future<$0.CsvResponse> getBackpackersCsv($grpc.ServiceCall call, $0.CsvRequest request);
 }

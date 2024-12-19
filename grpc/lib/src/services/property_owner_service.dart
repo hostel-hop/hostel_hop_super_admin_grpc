@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:bcrypt/bcrypt.dart';
 import 'package:dotenv/dotenv.dart';
+import 'package:get_it/get_it.dart';
 import 'package:grpc/grpc.dart' hide Response;
 import 'package:hostel_hop_grpc/src/generated/property_owners.pbgrpc.dart';
 import 'package:hostel_hop_grpc/src/mixins/skyflow_generate_bearer_token.dart';
@@ -18,6 +19,8 @@ class PropertyOwnersService extends PropertyOwnersServiceBase
   final String _vaultId;
   final String _vaultUrl;
   final String table = 'property_owners';
+  final String credentialsEncoded = GetIt.instance
+      .get<DotEnv>()['PROPERTY_OWNER_SKYFLOW_SERVICE_ACCOUNT_BASE_64']!;
 
   PropertyOwnersService(this._db, DotEnv env)
       : _vaultId = env['SKYFLOW_VAULT_ID']!,
@@ -28,7 +31,7 @@ class PropertyOwnersService extends PropertyOwnersServiceBase
   @override
   Future<GetPropertyOwnersResponse> getPropertyOwners(
       ServiceCall call, GetPropertyOwnersRequest request) async {
-    final bearerToken = await generateBearerToken();
+    final bearerToken = await generateBearerToken(credentialsEncoded);
 
     final query = request.query;
     late final Response response;
@@ -99,7 +102,7 @@ class PropertyOwnersService extends PropertyOwnersServiceBase
     UpdatePropertyOwnerRequest request,
   ) async {
     try {
-      final bearerToken = await generateBearerToken();
+      final bearerToken = await generateBearerToken(credentialsEncoded);
 
       final body = {
         'record': {
@@ -133,7 +136,7 @@ class PropertyOwnersService extends PropertyOwnersServiceBase
     UpdatePropertyOwnerEmailRequest request,
   ) async {
     try {
-      final bearerToken = await generateBearerToken();
+      final bearerToken = await generateBearerToken(credentialsEncoded);
 
       final json = {
         'record': {
@@ -158,7 +161,6 @@ class PropertyOwnersService extends PropertyOwnersServiceBase
       final data = jsonDecode(response.body);
 
       if (data['error'] != null) {
-
         throw GrpcError.internal(data['error']);
       }
 

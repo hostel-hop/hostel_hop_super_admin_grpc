@@ -26,8 +26,7 @@ class AmbassadorsContent extends HookWidget {
   Widget build(BuildContext context) {
     final textController = useTextEditingController();
 
-    return BlocConsumer<AmbassadorsCubit, AmbassadorsState>(
-      listener: (context, state) {},
+    return BlocBuilder<AmbassadorsCubit, AmbassadorsState>(
       builder: (context, state) {
         if (state is AmbassadorsLoading) {
           return const Center(child: CircularProgressIndicator());
@@ -89,6 +88,15 @@ class AmbassadorsContent extends HookWidget {
                                         .search(value);
                                   },
                                 ),
+                              ),
+                              Spacer(),
+                              TextButton(
+                                onPressed: () {
+                                  context
+                                      .read<AmbassadorsCubit>()
+                                      .generateCsv();
+                                },
+                                child: const Text('Generate Backpackers CSV'),
                               ),
                             ],
                           ),

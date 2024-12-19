@@ -295,6 +295,106 @@ class ChangeAmbassadorStatusResponse extends $pb.GeneratedMessage {
   static ChangeAmbassadorStatusResponse? _defaultInstance;
 }
 
+class CsvRequest extends $pb.GeneratedMessage {
+  factory CsvRequest({
+    $core.String? query,
+  }) {
+    final $result = create();
+    if (query != null) {
+      $result.query = query;
+    }
+    return $result;
+  }
+  CsvRequest._() : super();
+  factory CsvRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory CsvRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CsvRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'hostelhop.v1'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'query')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  CsvRequest clone() => CsvRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  CsvRequest copyWith(void Function(CsvRequest) updates) => super.copyWith((message) => updates(message as CsvRequest)) as CsvRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static CsvRequest create() => CsvRequest._();
+  CsvRequest createEmptyInstance() => create();
+  static $pb.PbList<CsvRequest> createRepeated() => $pb.PbList<CsvRequest>();
+  @$core.pragma('dart2js:noInline')
+  static CsvRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CsvRequest>(create);
+  static CsvRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get query => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set query($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasQuery() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearQuery() => clearField(1);
+}
+
+class CsvResponse extends $pb.GeneratedMessage {
+  factory CsvResponse({
+    $core.List<$core.int>? csvData,
+  }) {
+    final $result = create();
+    if (csvData != null) {
+      $result.csvData = csvData;
+    }
+    return $result;
+  }
+  CsvResponse._() : super();
+  factory CsvResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory CsvResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CsvResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'hostelhop.v1'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'csvData', $pb.PbFieldType.OY)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  CsvResponse clone() => CsvResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  CsvResponse copyWith(void Function(CsvResponse) updates) => super.copyWith((message) => updates(message as CsvResponse)) as CsvResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static CsvResponse create() => CsvResponse._();
+  CsvResponse createEmptyInstance() => create();
+  static $pb.PbList<CsvResponse> createRepeated() => $pb.PbList<CsvResponse>();
+  @$core.pragma('dart2js:noInline')
+  static CsvResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CsvResponse>(create);
+  static CsvResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<$core.int> get csvData => $_getN(0);
+  @$pb.TagNumber(1)
+  set csvData($core.List<$core.int> v) { $_setBytes(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasCsvData() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearCsvData() => clearField(1);
+}
+
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
 const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

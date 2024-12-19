@@ -29,4 +29,3 @@ Steps to creating a new endpoint
 3. run the ./generate-stubs.sh 
 4. go to service folder, select correct service and define the endpoint
 5. When creating a new service register it in Server.dart
-6.

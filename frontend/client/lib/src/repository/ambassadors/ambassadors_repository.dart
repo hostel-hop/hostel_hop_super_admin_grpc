@@ -12,7 +12,8 @@ class AmbassadorsRepository implements IAmbassadorsRepository {
   AmbassadorsRepository(this._client);
 
   @override
-  Future<Either<Failure, GetReferralsResponse>> list([String query = '']) async {
+  Future<Either<Failure, GetReferralsResponse>> list(
+      [String query = '']) async {
     try {
       final response = await _client.getReferrals(GetReferralsRequest(
         query: query,
@@ -27,11 +28,23 @@ class AmbassadorsRepository implements IAmbassadorsRepository {
   Future<Either<Failure, ChangeAmbassadorStatusResponse>> changeStatus(
       {required String id, required int type}) async {
     try {
-      final response = await _client.changeAmbassadorStatus(ChangeAmbassadorStatusRequest(
+      final response =
+          await _client.changeAmbassadorStatus(ChangeAmbassadorStatusRequest(
         backpackerId: id,
         type: type,
       ));
       return right(response);
+    } catch (e) {
+      return left(ServerFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<int>>> generateBackpackerCsv() async {
+    try {
+      final response = await _client.getBackpackersCsv(CsvRequest());
+
+      return right(response.csvData);
     } catch (e) {
       return left(ServerFailure(message: e.toString()));
     }

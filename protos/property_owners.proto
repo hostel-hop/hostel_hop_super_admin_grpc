@@ -2,13 +2,14 @@ syntax = "proto3";
 
 package hostelhop.v1;
 
+
+
 service PropertyOwners {
   rpc GetPropertyOwners (GetPropertyOwnersRequest) returns (GetPropertyOwnersResponse) {}
   rpc UpdatePropertyOwner (UpdatePropertyOwnerRequest) returns (UpdatePropertyOwnerResponse) {}
   rpc UpdatePropertyOwnerPassword (UpdatePropertyOwnerPasswordRequest) returns (UpdatePropertyOwnerPasswordResponse) {}
   rpc UpdatePropertyOwnerEmail (UpdatePropertyOwnerEmailRequest) returns (UpdatePropertyOwnerEmailResponse) {}
- 
-  
+
 }
 
 message GetPropertyOwnersRequest {

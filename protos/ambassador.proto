@@ -5,6 +5,8 @@ package hostelhop.v1;
 service Ambassadors {
   rpc GetReferrals (GetReferralsRequest) returns (GetReferralsResponse) {}
   rpc ChangeAmbassadorStatus (ChangeAmbassadorStatusRequest) returns (ChangeAmbassadorStatusResponse) {}
+  rpc GetAmbassadorCsv (CsvRequest) returns (CsvResponse);
+  rpc GetBackpackersCsv (CsvRequest) returns (CsvResponse);
 }
 
 message GetReferralsRequest {
@@ -27,3 +29,11 @@ message ChangeAmbassadorStatusRequest {
 }
 
 message ChangeAmbassadorStatusResponse {}
+
+message CsvRequest {
+  string query = 1;
+}
+
+message CsvResponse {
+  bytes csv_data = 1;
+}

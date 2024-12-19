@@ -15,20 +15,20 @@ import 'dart:core' as $core;
 import 'package:grpc/service_api.dart' as $grpc;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'role.pb.dart' as $3;
+import 'role.pb.dart' as $4;
 
 export 'role.pb.dart';
 
 @$pb.GrpcServiceName('hostelhop.v1.Role')
 class RoleClient extends $grpc.Client {
-  static final _$updateUserRole = $grpc.ClientMethod<$3.UpdateUserRoleRequest, $3.UpdateUserRoleResponse>(
+  static final _$updateUserRole = $grpc.ClientMethod<$4.UpdateUserRoleRequest, $4.UpdateUserRoleResponse>(
       '/hostelhop.v1.Role/UpdateUserRole',
-      ($3.UpdateUserRoleRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $3.UpdateUserRoleResponse.fromBuffer(value));
-  static final _$authorize = $grpc.ClientMethod<$3.AuthorizeRequest, $3.AuthorizeResponse>(
+      ($4.UpdateUserRoleRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $4.UpdateUserRoleResponse.fromBuffer(value));
+  static final _$authorize = $grpc.ClientMethod<$4.AuthorizeRequest, $4.AuthorizeResponse>(
       '/hostelhop.v1.Role/Authorize',
-      ($3.AuthorizeRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $3.AuthorizeResponse.fromBuffer(value));
+      ($4.AuthorizeRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $4.AuthorizeResponse.fromBuffer(value));
 
   RoleClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -36,11 +36,11 @@ class RoleClient extends $grpc.Client {
       : super(channel, options: options,
         interceptors: interceptors);
 
-  $grpc.ResponseFuture<$3.UpdateUserRoleResponse> updateUserRole($3.UpdateUserRoleRequest request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$4.UpdateUserRoleResponse> updateUserRole($4.UpdateUserRoleRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$updateUserRole, request, options: options);
   }
 
-  $grpc.ResponseFuture<$3.AuthorizeResponse> authorize($3.AuthorizeRequest request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$4.AuthorizeResponse> authorize($4.AuthorizeRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$authorize, request, options: options);
   }
 }
@@ -50,30 +50,30 @@ abstract class RoleServiceBase extends $grpc.Service {
   $core.String get $name => 'hostelhop.v1.Role';
 
   RoleServiceBase() {
-    $addMethod($grpc.ServiceMethod<$3.UpdateUserRoleRequest, $3.UpdateUserRoleResponse>(
+    $addMethod($grpc.ServiceMethod<$4.UpdateUserRoleRequest, $4.UpdateUserRoleResponse>(
         'UpdateUserRole',
         updateUserRole_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $3.UpdateUserRoleRequest.fromBuffer(value),
-        ($3.UpdateUserRoleResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$3.AuthorizeRequest, $3.AuthorizeResponse>(
+        ($core.List<$core.int> value) => $4.UpdateUserRoleRequest.fromBuffer(value),
+        ($4.UpdateUserRoleResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$4.AuthorizeRequest, $4.AuthorizeResponse>(
         'Authorize',
         authorize_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $3.AuthorizeRequest.fromBuffer(value),
-        ($3.AuthorizeResponse value) => value.writeToBuffer()));
+        ($core.List<$core.int> value) => $4.AuthorizeRequest.fromBuffer(value),
+        ($4.AuthorizeResponse value) => value.writeToBuffer()));
   }
 
-  $async.Future<$3.UpdateUserRoleResponse> updateUserRole_Pre($grpc.ServiceCall call, $async.Future<$3.UpdateUserRoleRequest> request) async {
+  $async.Future<$4.UpdateUserRoleResponse> updateUserRole_Pre($grpc.ServiceCall call, $async.Future<$4.UpdateUserRoleRequest> request) async {
     return updateUserRole(call, await request);
   }
 
-  $async.Future<$3.AuthorizeResponse> authorize_Pre($grpc.ServiceCall call, $async.Future<$3.AuthorizeRequest> request) async {
+  $async.Future<$4.AuthorizeResponse> authorize_Pre($grpc.ServiceCall call, $async.Future<$4.AuthorizeRequest> request) async {
     return authorize(call, await request);
   }
 
-  $async.Future<$3.UpdateUserRoleResponse> updateUserRole($grpc.ServiceCall call, $3.UpdateUserRoleRequest request);
-  $async.Future<$3.AuthorizeResponse> authorize($grpc.ServiceCall call, $3.AuthorizeRequest request);
+  $async.Future<$4.UpdateUserRoleResponse> updateUserRole($grpc.ServiceCall call, $4.UpdateUserRoleRequest request);
+  $async.Future<$4.AuthorizeResponse> authorize($grpc.ServiceCall call, $4.AuthorizeRequest request);
 }

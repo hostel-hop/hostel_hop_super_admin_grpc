@@ -7,4 +7,6 @@ abstract interface class IAmbassadorsRepository {
 
   Future<Either<Failure, ChangeAmbassadorStatusResponse>> changeStatus(
       {required String id, required int type});
+
+  Future<Either<Failure, List<int>>> generateBackpackerCsv();
 }

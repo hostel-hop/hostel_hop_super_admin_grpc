@@ -1,15 +1,11 @@
 import 'dart:convert';
 
-import 'package:dotenv/dotenv.dart';
-import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:jose/jose.dart';
 
 mixin SkyflowGenerateBearerToken {
-  static final String credentialsEncoded = GetIt.instance
-      .get<DotEnv>()['PROPERTY_OWNER_SKYFLOW_SERVICE_ACCOUNT_BASE_64']!;
-
-  Future<Map<String, dynamic>?> _getSkyflowCredentials() async {
+  Future<Map<String, dynamic>?> _getSkyflowCredentials(
+      String credentialsEncoded) async {
     try {
       final jsonEncoded = utf8.decode(base64.decode(credentialsEncoded));
 
@@ -49,6 +45,7 @@ mixin SkyflowGenerateBearerToken {
   Future<String> _getBearerToken(
     String signedJWT,
     Map<String, dynamic> creds,
+    
   ) async {
     final body = {
       'grant_type': 'urn:ietf:params:oauth:grant-type:jwt-bearer',
@@ -67,8 +64,8 @@ mixin SkyflowGenerateBearerToken {
     return json['accessToken'] as String;
   }
 
-  Future<String> generateBearerToken() async {
-    final creds = await _getSkyflowCredentials();
+  Future<String> generateBearerToken(String credentialsEncoded) async {
+    final creds = await _getSkyflowCredentials(credentialsEncoded);
 
     if (creds == null) {
       throw Exception('Skyflow credentials not found');

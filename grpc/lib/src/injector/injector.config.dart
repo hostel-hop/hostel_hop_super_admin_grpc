@@ -38,8 +38,10 @@ extension GetItInjectableX on _i1.GetIt {
     );
     gh.singleton<_i4.DotEnv>(() => registerModule.dotEnv());
     gh.singleton<_i5.WalletsService>(() => _i5.WalletsService(gh<_i3.Db>()));
-    gh.singleton<_i6.AmbassadorService>(
-        () => _i6.AmbassadorService(gh<_i3.Db>()));
+    gh.singleton<_i6.AmbassadorService>(() => _i6.AmbassadorService(
+          gh<_i3.Db>(),
+          gh<_i4.DotEnv>(),
+        ));
     gh.singleton<_i7.PropertyOwnersService>(() => _i7.PropertyOwnersService(
           gh<_i3.Db>(),
           gh<_i4.DotEnv>(),
