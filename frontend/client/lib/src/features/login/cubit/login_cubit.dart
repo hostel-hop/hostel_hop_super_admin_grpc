@@ -44,10 +44,11 @@ class LoginCubit extends Cubit<LoginState> {
             role: 'super_admin',
           );
 
-          return isAuthorizedResult.fold(
-              (l) => emit(
-                    state.copyWith(status: LoginStatus.error, error: l.message),
-                  ), (isAuthorized) {
+          return isAuthorizedResult.fold((l) {
+            emit(
+              state.copyWith(status: LoginStatus.error, error: l.message),
+            );
+          }, (isAuthorized) {
             if (isAuthorized) {
               emit(state.copyWith(status: LoginStatus.success));
             } else {

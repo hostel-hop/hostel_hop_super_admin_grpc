@@ -53,3 +53,8 @@ spec:
                 secretKeyRef:
                   name: PROPERTY_OWNER_SKYFLOW_SERVICE_ACCOUNT_BASE_64
                   key: latest
+            - name: BACKPACKER_SKYFLOW_SERVICE_ACCOUNT_BASE_64
+              valueFrom:
+                secretKeyRef:
+                  name: BACKPACKER_SKYFLOW_SERVICE_ACCOUNT_BASE_64
+                  key: latest
